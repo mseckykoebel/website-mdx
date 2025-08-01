@@ -14,7 +14,7 @@ function Header() {
   const name = "Mason Secky-Koebel";
 
   return (
-    <header className="flex justify-between items-center p-6">
+    <header className="flex justify-between items-center max-w-4xl mx-auto p-6">
       <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{name}</h1>
       <div className="flex gap-2">
         <Button variant="ghost" size="icon">
