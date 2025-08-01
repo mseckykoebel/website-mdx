@@ -17,16 +17,16 @@ function Header() {
     <header className="flex justify-between items-center max-w-4xl mx-auto p-6">
       <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{name}</h1>
       <div className="flex gap-2">
-        <Button variant="ghost" size="icon">
+        <Button variant="ghost" size="icon" aria-label="Email contact">
           <Mail className="h-5 w-5" />
         </Button>
-        <Button variant="ghost" size="icon">
+        <Button variant="ghost" size="icon" aria-label="GitHub profile">
           <Github className="h-5 w-5" />
         </Button>
-        <Button variant="ghost" size="icon">
+        <Button variant="ghost" size="icon" aria-label="Twitter profile">
           <Twitter className="h-5 w-5" />
         </Button>
-        <Link href="/rss" target="_blank">
+        <Link href="/rss" target="_blank" aria-label="RSS feed">
           <Button variant="ghost" size="icon">
             <Rss className="h-5 w-5" />
           </Button>
