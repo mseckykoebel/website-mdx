@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getAllPosts } from "~/lib/posts";
 import { Mail, Github, Twitter, Rss } from "lucide-react";
 
@@ -226,8 +227,16 @@ function WorkSection() {
           <AccordionTrigger className="hover:no-underline">
             <div className="flex items-center justify-between w-full">
               <div className="flex items-center gap-3 text-left">
-                <div className="w-8 h-8 bg-purple-500 rounded flex-shrink-0 flex items-center justify-center">
-                  <div className="text-white font-bold">WP</div>
+                <div className="w-8 h-8 flex-shrink-0 relative overflow-hidden rounded">
+                  <Image
+                    src="/images/wizard.png"
+                    alt="Big Leap Health"
+                    width={32}
+                    height={32}
+                    className="object-cover w-full h-full"
+                    quality={50}
+                    priority={false}
+                  />
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900">
@@ -284,8 +293,16 @@ function WorkSection() {
           <AccordionTrigger className="hover:no-underline">
             <div className="flex items-center justify-between w-full">
               <div className="flex items-center gap-3 text-left">
-                <div className="w-8 h-8 bg-blue-500 rounded flex-shrink-0 flex items-center justify-center">
-                  <div className="text-white font-bold">BL</div>
+                <div className="w-8 h-8 flex-shrink-0 relative overflow-hidden rounded">
+                  <Image
+                    src="/images/bigleaphealth.png"
+                    alt="Big Leap Health"
+                    width={32}
+                    height={32}
+                    className="object-cover w-full h-full"
+                    quality={50}
+                    priority={false}
+                  />
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900">
@@ -330,10 +347,16 @@ function WorkSection() {
           <AccordionTrigger className="hover:no-underline">
             <div className="flex items-center justify-between w-full">
               <div className="flex items-center gap-3 text-left">
-                <div className="w-8 h-8 bg-green-200 rounded flex-shrink-0 flex items-center justify-center">
-                  <div className="w-4 h-4 bg-black rounded-full relative">
-                    <div className="absolute inset-1 bg-green-200 rounded-full"></div>
-                  </div>
+                <div className="w-8 h-8 flex-shrink-0 relative overflow-hidden rounded">
+                  <Image
+                    src="/images/pathize.png"
+                    alt="Pathize Health"
+                    width={32}
+                    height={32}
+                    className="object-cover w-full h-full"
+                    quality={50}
+                    priority={false}
+                  />
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900">
@@ -380,13 +403,16 @@ function WorkSection() {
           <AccordionTrigger className="hover:no-underline">
             <div className="flex items-center justify-between w-full">
               <div className="flex items-center gap-3 text-left">
-                <div className="w-8 h-8 bg-black rounded flex-shrink-0 flex items-center justify-center">
-                  <div className="grid grid-cols-2 gap-0.5">
-                    <div className="w-1.5 h-1.5 bg-white"></div>
-                    <div className="w-1.5 h-1.5 bg-white"></div>
-                    <div className="w-1.5 h-1.5 bg-white"></div>
-                    <div className="w-1.5 h-1.5 bg-white"></div>
-                  </div>
+                <div className="w-8 h-8 flex-shrink-0 relative overflow-hidden rounded">
+                  <Image
+                    src="/images/flexpa.png"
+                    alt="Flexpa"
+                    width={32}
+                    height={32}
+                    className="object-cover w-full h-full"
+                    quality={50}
+                    priority={false}
+                  />
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900">
@@ -426,13 +452,16 @@ function WorkSection() {
           <AccordionTrigger className="hover:no-underline">
             <div className="flex items-center justify-between w-full">
               <div className="flex items-center gap-3 text-left">
-                <div className="w-8 h-8 bg-black rounded flex-shrink-0 flex items-center justify-center">
-                  <div className="grid grid-cols-2 gap-0.5">
-                    <div className="w-1.5 h-1.5 bg-white"></div>
-                    <div className="w-1.5 h-1.5 bg-white"></div>
-                    <div className="w-1.5 h-1.5 bg-white"></div>
-                    <div className="w-1.5 h-1.5 bg-white"></div>
-                  </div>
+                <div className="w-8 h-8 flex-shrink-0 relative overflow-hidden rounded">
+                  <Image
+                    src="/images/flexpa.png"
+                    alt="Flexpa"
+                    width={32}
+                    height={32}
+                    className="object-cover w-full h-full"
+                    quality={50}
+                    priority={false}
+                  />
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900">
@@ -474,8 +503,16 @@ function WorkSection() {
           <AccordionTrigger className="hover:no-underline">
             <div className="flex items-center justify-between w-full">
               <div className="flex items-center gap-3 text-left">
-                <div className="w-8 h-8 bg-gray-800 rounded flex-shrink-0 flex items-center justify-center">
-                  <div className="text-white font-bold">BD</div>
+                <div className="w-8 h-8 flex-shrink-0 relative overflow-hidden rounded">
+                  <Image
+                    src="/images/brinc.png"
+                    alt="Brinc"
+                    width={32}
+                    height={32}
+                    className="object-cover w-full h-full"
+                    quality={50}
+                    priority={false}
+                  />
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900">
@@ -516,8 +553,16 @@ function WorkSection() {
           <AccordionTrigger className="hover:no-underline">
             <div className="flex items-center justify-between w-full">
               <div className="flex items-center gap-3 text-left">
-                <div className="w-8 h-8 bg-red-100 rounded flex-shrink-0 flex items-center justify-center">
-                  <div className="text-xs font-bold text-red-600">HFF</div>
+                <div className="w-8 h-8 flex-shrink-0 relative overflow-hidden rounded">
+                  <Image
+                    src="/images/hurds.png"
+                    alt="Hurds Family Farm"
+                    width={32}
+                    height={32}
+                    className="object-cover w-full h-full"
+                    quality={50}
+                    priority={true}
+                  />
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900">
