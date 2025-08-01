@@ -18,7 +18,7 @@ function Header() {
       <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{name}</h1>
       <div className="flex gap-2">
         <Link href="mailto:mseckykebel@mail.com" aria-label="Email contact">
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" aria-label="Send email">
             <Mail className="h-5 w-5" />
           </Button>
         </Link>
@@ -27,7 +27,7 @@ function Header() {
           target="_blank"
           aria-label="GitHub profile"
         >
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" aria-label="Visit GitHub profile">
             <Github className="h-5 w-5" />
           </Button>
         </Link>
@@ -36,12 +36,20 @@ function Header() {
           target="_blank"
           aria-label="Twitter profile"
         >
-          <Button variant="ghost" size="icon">
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label="Visit Twitter profile"
+          >
             <Twitter className="h-5 w-5" />
           </Button>
         </Link>
         <Link href="/rss" target="_blank" aria-label="RSS feed">
-          <Button variant="ghost" size="icon">
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label="Subscribe to RSS feed"
+          >
             <Rss className="h-5 w-5" />
           </Button>
         </Link>
