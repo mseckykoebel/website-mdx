@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getAllPosts } from "~/lib/posts";
-import { Mail, Github, Twitter } from "lucide-react";
+import { Mail, Github, Twitter, Rss } from "lucide-react";
 
 import { Button } from "~/components/ui/button";
 import {
@@ -26,6 +26,11 @@ function Header() {
         <Button variant="ghost" size="icon">
           <Twitter className="h-5 w-5" />
         </Button>
+        <Link href="/rss" target="_blank">
+          <Button variant="ghost" size="icon">
+            <Rss className="h-5 w-5" />
+          </Button>
+        </Link>
       </div>
     </header>
   );

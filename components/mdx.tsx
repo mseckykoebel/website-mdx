@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import { highlight } from "sugar-high";
 
 function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
   const headers = data.headers.map((header, index) => (
@@ -55,16 +56,8 @@ function RoundedImage(props: any) {
 }
 
 function Code({ children, ...props }: any) {
-  const codeHTML = children;
-
-  return (
-    <code
-      className="px-1 py-0.5 rounded-lg bg-gray-100 text-gray-800"
-      {...props}
-    >
-      {codeHTML}
-    </code>
-  );
+  const codeHTML = highlight(children);
+  return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
 }
 
 function slugify(str: string) {
