@@ -10,6 +10,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "~/components/ui/accordion";
+import { NewsletterSection } from "~/app/features/home";
 
 function Header() {
   const name = "Mason Secky-Koebel";
@@ -114,9 +115,10 @@ function Description() {
         >
           Wizard Perks
         </Link>
-        , where we&apos;re building a modern perks platform (in Chicago 🐻). I
-        write infrequently about technology and startups.
+        , where we&apos;re building a modern perks platform (in Chicago 🐻).
       </p>
+
+      <NewsletterSection />
     </div>
   );
 }

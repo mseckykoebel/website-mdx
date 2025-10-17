@@ -5,7 +5,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-import { baseUrl } from "./sitemap";
+import { baseUrl } from "~/app/sitemap";
+import { QueryClientProvider } from "~/app/providers/QueryClientProvider";
+import { Toaster } from "~/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,9 +57,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased py-6 md:py-12 px-6 md:px-24 lg:px-48 xl:px-64`}
       >
-        {children}
+        <QueryClientProvider>{children}</QueryClientProvider>
         <Analytics />
         <SpeedInsights />
+        <Toaster />
       </body>
     </html>
   );
