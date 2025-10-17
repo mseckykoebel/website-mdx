@@ -2,14 +2,14 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { Loader2 } from "lucide-react";
+import { toast } from "sonner";
 import { z } from "zod";
 
 import { Input } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
-import { Loader2 } from "lucide-react";
 
 import { useSaveEmail } from "../hooks";
-import { toast } from "sonner";
 
 function handleSaveEmailError(error: Error) {
   if (error.message.includes("duplicate")) {
