@@ -6,6 +6,7 @@ import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { z } from "zod";
 
+import { emailInputSchema } from "~/app/schemas/email";
 import { Input } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
 
@@ -19,23 +20,20 @@ function handleSaveEmailError(error: Error) {
   }
 }
 
-const formSchema = z.object({
-  email: z
-    .email("Please enter a valid email address.")
-    .min(1, "Email is required."),
-});
-
 export function NewsletterSection() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof emailInputSchema>>({
+    resolver: zodResolver(emailInputSchema),
     defaultValues: {
-      email: "",
+      email: undefined,
     },
   });
 
   const { saveEmail, saveEmailLoading } = useSaveEmail(handleSaveEmailError);
 
-  const handleSubmit = async (data: z.infer<typeof formSchema>) => {
+  const loading = form.formState.isSubmitting || saveEmailLoading;
+  const emailError = form.formState.errors.email;
+
+  const handleSubmit = async (data: z.infer<typeof emailInputSchema>) => {
     try {
       await saveEmail(data.email);
       toast.success("Email subscribed successfully!");
@@ -44,9 +42,6 @@ export function NewsletterSection() {
       console.error(err);
     }
   };
-
-  const loading = form.formState.isSubmitting || saveEmailLoading;
-  const emailError = form.formState.errors.email;
 
   const LoadingButton = () => {
     return (
