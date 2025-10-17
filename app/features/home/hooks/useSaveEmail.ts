@@ -8,7 +8,7 @@ export const useSaveEmail = (onError?: (error: Error) => void) => {
   const supabase = createClient();
 
   const saveEmail = useMutation({
-    mutationFn: async (email: string) => {
+    mutationFn: async ({ email }: { email: string }) => {
       const { data, error } = await supabase
         .from("emails")
         .insert({ email })

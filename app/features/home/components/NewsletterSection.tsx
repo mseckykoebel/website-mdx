@@ -35,7 +35,7 @@ export function NewsletterSection() {
 
   const handleSubmit = async (data: z.infer<typeof emailInputSchema>) => {
     try {
-      await saveEmail(data.email);
+      await saveEmail({ email: data.email });
       toast.success("Email subscribed successfully!");
       form.reset();
     } catch (err) {
