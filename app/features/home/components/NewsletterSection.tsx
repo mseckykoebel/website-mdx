@@ -32,6 +32,7 @@ export function NewsletterSection() {
 
   const loading = form.formState.isSubmitting || saveEmailLoading;
   const emailError = form.formState.errors.email;
+  const isButtonDisabled = loading || !form.formState.isValid;
 
   const handleSubmit = async (data: z.infer<typeof emailInputSchema>) => {
     try {
@@ -48,7 +49,7 @@ export function NewsletterSection() {
       <Button
         type="submit"
         variant="outline"
-        disabled={loading}
+        disabled={isButtonDisabled}
         onClick={form.handleSubmit(handleSubmit)}
       >
         {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Subscribe"}
