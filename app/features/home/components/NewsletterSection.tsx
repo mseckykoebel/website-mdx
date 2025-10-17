@@ -48,6 +48,19 @@ export function NewsletterSection() {
   const loading = form.formState.isSubmitting || saveEmailLoading;
   const emailError = form.formState.errors.email;
 
+  const LoadingButton = () => {
+    return (
+      <Button
+        type="submit"
+        variant="outline"
+        disabled={loading}
+        onClick={form.handleSubmit(handleSubmit)}
+      >
+        {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Subscribe"}
+      </Button>
+    );
+  };
+
   return (
     <>
       <p className="text-lg leading-relaxed text-gray-600 mt-6">
@@ -58,37 +71,22 @@ export function NewsletterSection() {
         <Input
           type="email"
           placeholder="Email"
-          {...form.register("email")}
           aria-invalid={emailError ? "true" : "false"}
           className={emailError ? "border-red-500" : ""}
+          {...form.register("email")}
         />
-        <Button
-          type="submit"
-          variant="outline"
-          onClick={form.handleSubmit(handleSubmit)}
-          disabled={loading}
-        >
-          {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Subscribe"}
-        </Button>
+        <LoadingButton />
       </div>
 
       <div className="flex sm:hidden flex-col w-full items-start gap-2 mt-6 ">
         <Input
           type="email"
           placeholder="Email"
-          {...form.register("email")}
           aria-invalid={emailError ? "true" : "false"}
           className={emailError ? "border-red-500" : ""}
+          {...form.register("email")}
         />
-        <Button
-          type="submit"
-          variant="outline"
-          className="w-full"
-          onClick={form.handleSubmit(handleSubmit)}
-          disabled={loading}
-        >
-          {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Subscribe"}
-        </Button>
+        <LoadingButton />
       </div>
     </>
   );
