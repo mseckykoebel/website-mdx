@@ -9,7 +9,6 @@ export const useShowConfirmationMessage = () => {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    console.log("searchParams", searchParams);
     const emailStatus = searchParams.get("email");
 
     if (emailStatus === "verified") {
