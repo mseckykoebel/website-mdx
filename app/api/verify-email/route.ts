@@ -106,11 +106,11 @@ function getFailureMessage(reason: VerificationFailureReason): string {
     case "token_not_found":
       return "Token not found";
     case "token_expired":
-      return "Token has expired";
+      return "Link has expired - please subscribe again to get a new link";
     case "email_mismatch":
       return "Email does not match token";
     case "token_already_used":
-      return "Token has already been used";
+      return "Email has already been subscribed - you're all set!";
     case "email_save_failed":
       return "Failed to save email to database";
     case "token_update_failed":
