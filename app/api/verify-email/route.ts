@@ -102,7 +102,7 @@ function getFailureMessage(reason: VerificationFailureReason): string {
     case "email_missing":
       return "Email is missing from URL";
     case "token_verification_failed":
-      return "Failed to verify token";
+      return "Failed to verify token and email combination";
     case "token_not_found":
       return "Token not found";
     case "token_expired":
