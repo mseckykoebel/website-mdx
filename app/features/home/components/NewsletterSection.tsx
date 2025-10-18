@@ -10,7 +10,7 @@ import { emailInputSchema } from "~/app/schemas/email";
 import { Input } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
 
-import { useSaveEmail } from "../hooks";
+import { useSendVerificationEmail, useShowConfirmationMessage } from "../hooks";
 
 function handleSaveEmailError(error: Error) {
   if (error.message.includes("duplicate")) {
@@ -21,44 +21,35 @@ function handleSaveEmailError(error: Error) {
 }
 
 export function NewsletterSection() {
+  useShowConfirmationMessage();
+
   const form = useForm<z.infer<typeof emailInputSchema>>({
     resolver: zodResolver(emailInputSchema),
     defaultValues: {
-      email: undefined,
+      email: "",
     },
   });
 
-  const { saveEmail, saveEmailLoading } = useSaveEmail(handleSaveEmailError);
-
-  const loading = form.formState.isSubmitting || saveEmailLoading;
-  const emailError = form.formState.errors.email;
-  const isButtonDisabled = loading || !form.formState.isValid;
+  const { sendVerificationEmail, sendVerificationEmailLoading } =
+    useSendVerificationEmail({
+      onError: handleSaveEmailError,
+    });
 
   const handleSubmit = async (data: z.infer<typeof emailInputSchema>) => {
     try {
-      await saveEmail({ email: data.email });
-      toast.success("Email subscribed successfully!");
+      await sendVerificationEmail({ email: data.email });
+      toast.success(
+        `Verification email sent successfully to ${data.email}! Check your inbox or spam and click the link to confirm your email.`
+      );
       form.reset();
     } catch (err) {
       console.error(err);
     }
   };
 
-  const LoadingButton = () => {
-    return (
-      <Button
-        type="submit"
-        variant="outline"
-        className="w-full sm:w-32"
-        disabled={isButtonDisabled}
-        aria-disabled={isButtonDisabled}
-        aria-busy={loading}
-        onClick={form.handleSubmit(handleSubmit)}
-      >
-        {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Subscribe"}
-      </Button>
-    );
-  };
+  const loading = form.formState.isSubmitting || sendVerificationEmailLoading;
+  const emailError = form.formState.errors.email;
+  const isButtonDisabled = loading || !form.formState.isValid;
 
   return (
     <>
@@ -66,7 +57,7 @@ export function NewsletterSection() {
         I write infrequently about technology and startups. You can subscribe to
         my newsletter below to get notified of new posts.
       </p>
-      <div className="hidden sm:flex w-full max-w-md items-center gap-2 mt-6">
+      <div className="flex flex-col sm:flex-row w-full max-w-md gap-2 mt-6">
         <Input
           type="email"
           placeholder="Email"
@@ -74,18 +65,17 @@ export function NewsletterSection() {
           className={emailError ? "border-red-500" : ""}
           {...form.register("email")}
         />
-        <LoadingButton />
-      </div>
-
-      <div className="flex sm:hidden flex-col w-full items-start gap-2 mt-6 ">
-        <Input
-          type="email"
-          placeholder="Email"
-          aria-invalid={emailError ? "true" : "false"}
-          className={emailError ? "border-red-500" : ""}
-          {...form.register("email")}
-        />
-        <LoadingButton />
+        <Button
+          type="submit"
+          variant="outline"
+          className="w-full sm:w-32"
+          disabled={isButtonDisabled}
+          aria-disabled={isButtonDisabled}
+          aria-busy={loading}
+          onClick={form.handleSubmit(handleSubmit)}
+        >
+          {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Subscribe"}
+        </Button>
       </div>
     </>
   );
