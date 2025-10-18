@@ -17,8 +17,6 @@ export const useSendVerificationEmail = ({ onError, onSuccess }: Props) => {
         body: JSON.stringify({ email }),
       });
 
-      console.log("response", response);
-
       if (!response.ok) throw new Error("Failed to send email");
       return response.json();
     },
