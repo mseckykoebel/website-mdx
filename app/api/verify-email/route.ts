@@ -12,11 +12,11 @@ export async function GET(request: NextRequest) {
     const email = searchParams.get("email");
 
     if (!token) {
-      return NextResponse.json({ error: "Token is required" }, { status: 400 });
+      return redirectToFailure(request, "token_missing");
     }
 
     if (!email) {
-      return NextResponse.json({ error: "Email is required" }, { status: 400 });
+      return redirectToFailure(request, "email_missing");
     }
 
     /** 1) confirm token was issued to this person, and is not expired or used  */
@@ -28,14 +28,11 @@ export async function GET(request: NextRequest) {
       .single();
 
     if (tokenError) {
-      return NextResponse.json(
-        { error: "Internal server error" },
-        { status: 500 }
-      );
+      return redirectToFailure(request, "token_verification_failed");
     }
 
     if (!tokenData) {
-      return NextResponse.json({ error: "Token not found" }, { status: 404 });
+      return redirectToFailure(request, "token_not_found");
     }
 
     const expiresAt = new Date(tokenData.expires_at);
@@ -43,21 +40,15 @@ export async function GET(request: NextRequest) {
     const twentyFourHoursAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000);
 
     if (expiresAt < twentyFourHoursAgo) {
-      return NextResponse.json({ error: "Token expired" }, { status: 400 });
+      return redirectToFailure(request, "token_expired");
     }
 
     if (tokenData.email !== email) {
-      return NextResponse.json(
-        { error: "Email does not match" },
-        { status: 400 }
-      );
+      return redirectToFailure(request, "email_mismatch");
     }
 
     if (tokenData.used_at) {
-      return NextResponse.json(
-        { error: "Token already used" },
-        { status: 400 }
-      );
+      return redirectToFailure(request, "token_already_used");
     }
 
     /** 2) upsert into emails table (adding them as a subscriber) */
@@ -68,10 +59,7 @@ export async function GET(request: NextRequest) {
       .single();
 
     if (emailError) {
-      return NextResponse.json(
-        { error: "Failed to upsert email" },
-        { status: 500 }
-      );
+      return redirectToFailure(request, "email_save_failed");
     }
 
     /** 3) mark the token as used */
@@ -81,19 +69,67 @@ export async function GET(request: NextRequest) {
       .eq("token", token);
 
     if (updateTokenError) {
-      return NextResponse.json(
-        { error: "Failed to update token" },
-        { status: 500 }
-      );
+      return redirectToFailure(request, "token_update_failed");
     }
 
-    if (!emailData) throw new Error("Failed to upsert email");
+    if (!emailData) {
+      return redirectToFailure(request, "email_data_missing");
+    }
 
     return NextResponse.redirect(new URL(`/?email=verified`, request.url));
   } catch {
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    );
+    return redirectToFailure(request, "internal_error");
   }
+}
+
+type VerificationFailureReason =
+  | "token_missing"
+  | "email_missing"
+  | "token_verification_failed"
+  | "token_not_found"
+  | "token_expired"
+  | "email_mismatch"
+  | "token_already_used"
+  | "email_save_failed"
+  | "token_update_failed"
+  | "email_data_missing"
+  | "internal_error";
+
+function getFailureMessage(reason: VerificationFailureReason): string {
+  switch (reason) {
+    case "token_missing":
+      return "Token is missing from URL";
+    case "email_missing":
+      return "Email is missing from URL";
+    case "token_verification_failed":
+      return "Failed to verify token";
+    case "token_not_found":
+      return "Token not found";
+    case "token_expired":
+      return "Token has expired";
+    case "email_mismatch":
+      return "Email does not match token";
+    case "token_already_used":
+      return "Token has already been used";
+    case "email_save_failed":
+      return "Failed to save email to database";
+    case "token_update_failed":
+      return "Failed to mark token as used";
+    case "email_data_missing":
+      return "Failed to retrieve email data";
+    case "internal_error":
+      return "Internal server error occurred";
+  }
+}
+
+function redirectToFailure(
+  request: NextRequest,
+  reason: VerificationFailureReason
+): NextResponse {
+  return NextResponse.redirect(
+    new URL(
+      `/?email=unverified&reason=${encodeURIComponent(getFailureMessage(reason))}`,
+      request.url
+    )
+  );
 }

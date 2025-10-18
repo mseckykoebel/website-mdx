@@ -19,6 +19,15 @@ export const useShowConfirmationMessage = () => {
       const params = new URLSearchParams(searchParams.toString());
       params.delete("email");
       router.replace(`/?${params.toString()}`);
+    } else if (emailStatus === "unverified") {
+      const reason = searchParams.get("reason");
+      toast.error(reason || "Email verification failed");
+
+      /** remove the query parameters from the URL */
+      const params = new URLSearchParams(searchParams.toString());
+      params.delete("email");
+      params.delete("reason");
+      router.replace(`/?${params.toString()}`);
     }
   }, [searchParams, router]);
 };
