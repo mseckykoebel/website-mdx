@@ -49,7 +49,10 @@ export function NewsletterSection() {
       <Button
         type="submit"
         variant="outline"
+        className="w-full sm:w-32"
         disabled={isButtonDisabled}
+        aria-disabled={isButtonDisabled}
+        aria-busy={loading}
         onClick={form.handleSubmit(handleSubmit)}
       >
         {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Subscribe"}
@@ -63,7 +66,7 @@ export function NewsletterSection() {
         I write infrequently about technology and startups. You can subscribe to
         my newsletter below to get notified of new posts.
       </p>
-      <div className="hidden sm:flex w-full max-w-sm items-center gap-2 mt-6">
+      <div className="hidden sm:flex w-full max-w-md items-center gap-2 mt-6">
         <Input
           type="email"
           placeholder="Email"
