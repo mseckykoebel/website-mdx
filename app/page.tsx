@@ -65,26 +65,16 @@ function Description() {
       <p className="text-lg leading-relaxed text-gray-600">
         I graduated from{" "}
         <Link
-          href=""
+          href="https://www.northwestern.edu/"
           target="_blank"
           rel="noopener noreferrer"
           className="underline hover:text-gray-900 transition-colors"
         >
           Northwestern
         </Link>
-        . While there, I founded{" "}
+        . I was dev #3 at{" "}
         <Link
-          href=""
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline hover:text-gray-900 transition-colors"
-        >
-          Raiso
-        </Link>
-        , an AI organization focused on safety and education. I was intern #1,
-        and a founding engineer at{" "}
-        <Link
-          href=""
+          href="https://www.flexpa.com/"
           target="_blank"
           rel="noopener noreferrer"
           className="underline hover:text-gray-900 transition-colors"
@@ -95,7 +85,7 @@ function Description() {
         data. We were recently named one of the most promising healthcare
         startups. I left Flexpa to co-found{" "}
         <Link
-          href=""
+          href="https://www.linkedin.com/company/pathize"
           target="_blank"
           rel="noopener noreferrer"
           className="underline hover:text-gray-900 transition-colors"
@@ -108,7 +98,7 @@ function Description() {
       <p className="text-lg leading-relaxed text-gray-600 mt-6">
         I am currently the founding engineer at{" "}
         <Link
-          href=""
+          href="https://www.wizardperks.com/"
           target="_blank"
           rel="noopener noreferrer"
           className="underline hover:text-gray-900 transition-colors"
