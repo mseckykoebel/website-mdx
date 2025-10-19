@@ -63,16 +63,7 @@ function Description() {
   return (
     <div className="max-w-4xl mx-auto px-6">
       <p className="text-lg leading-relaxed text-gray-600">
-        I graduated from{" "}
-        <Link
-          href="https://www.northwestern.edu/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline hover:text-gray-900 transition-colors"
-        >
-          Northwestern
-        </Link>
-        . I was dev #3 at{" "}
+        I was the third software engineer at{" "}
         <Link
           href="https://www.flexpa.com/"
           target="_blank"
@@ -82,8 +73,7 @@ function Description() {
           Flexpa
         </Link>
         , an a16z and apollo-backed startup building plaid for healthcare claims
-        data. We were recently named one of the most promising healthcare
-        startups. I left Flexpa to co-found{" "}
+        data. I left Flexpa to co-found and build{" "}
         <Link
           href="https://www.linkedin.com/company/pathize"
           target="_blank"
@@ -92,11 +82,11 @@ function Description() {
         >
           Pathize Health
         </Link>
-        , where we built a platform for Long COVID care.
+        , a telehealth platform for Long COVID care.
       </p>
 
       <p className="text-lg leading-relaxed text-gray-600 mt-6">
-        I am currently the founding engineer at{" "}
+        I am currently the CTO of{" "}
         <Link
           href="https://www.wizardperks.com/"
           target="_blank"
@@ -105,7 +95,8 @@ function Description() {
         >
           Wizard Perks
         </Link>
-        , where we&apos;re building a modern perks platform (in Chicago 🐻).
+        , a corporate benefits platform for employers and membership groups (in
+        Chicago 🐻).
       </p>
 
       <NewsletterSection />
