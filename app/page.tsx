@@ -4,6 +4,7 @@ import { getAllPosts } from "~/lib/posts";
 import { Mail, Github, Twitter, Rss } from "lucide-react";
 
 import { Button } from "~/components/ui/button";
+import { Badge } from "~/components/ui/badge";
 import {
   Accordion,
   AccordionContent,
@@ -104,6 +105,10 @@ function Description() {
   );
 }
 
+function LatestBadge() {
+  return <Badge variant="outline">Latest</Badge>;
+}
+
 function PostsSection() {
   const posts = getAllPosts();
 
@@ -113,12 +118,15 @@ function PostsSection() {
         Writing
       </h2>
       <div className="space-y-6">
-        {posts.map((post) => (
+        {posts.map((post, index) => (
           <article key={post.slug}>
             <Link href={`/posts/${post.slug}`} className="group block">
-              <h3 className="text-lg font-medium text-gray-600 group-hover:text-gray-900 transition-colors underline">
-                {post.title}
-              </h3>
+              <div className="flex items-center gap-2">
+                <h3 className="text-lg font-medium text-gray-600 group-hover:text-gray-900 transition-colors underline">
+                  {post.title}
+                </h3>
+                {index === 0 && <LatestBadge />}
+              </div>
               <time className="text-sm text-gray-500">
                 {new Date(post.date).toLocaleDateString("en-US", {
                   year: "numeric",
@@ -244,7 +252,7 @@ function WorkSection() {
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900">
-                    Wizard Perks - Founding Engineer
+                    Wizard Perks - CTO
                   </div>
                   <div className="text-sm text-gray-500">
                     January 2025 - Present
@@ -256,13 +264,16 @@ function WorkSection() {
           <AccordionContent>
             <div className="pt-4 pb-2 space-y-4">
               <p className="text-gray-600">
-                I&apos;m currently the founding engineer at Wizard Perks.
+                I&apos;m currently the CTO of Wizard Perks. I served as founding
+                engineer from January to October 2025.
               </p>
 
               <p className="text-gray-600">
-                Modern perks companies are still largely based on newsletters.
-                We&apos;re building a modern alternative, with exclusive perks
-                at national merchants. We&apos;re backed by{" "}
+                Modern perks/corporate benefits companies are still largely
+                based on newsletters and static websites. We&apos;re building a
+                modern alternative, and exploring how the category of corporate
+                benefits can be re-defined and expanded to serve different
+                markets. We&apos;re backed by{" "}
                 <Link
                   href=""
                   target="_blank"
@@ -320,7 +331,7 @@ function WorkSection() {
             </div>
           </AccordionTrigger>
           <AccordionContent>
-            <div className="pt-4 pb-2">
+            <div className="pt-4 pb-2 space-y-4">
               <p className="text-gray-600">
                 <Link
                   href=""

@@ -94,6 +94,22 @@ function createHeading(level: number) {
   return Heading;
 }
 
+function UnorderedList({ children, ...props }: any) {
+  return (
+    <ul className="list-outside ml-6 [&_li]:pl-6 [&_li]:-indent-6" {...props}>
+      {children}
+    </ul>
+  );
+}
+
+function OrderedList({ children, ...props }: any) {
+  return (
+    <ol className="list-outside ml-6 [&_li]:pl-6 [&_li]:-indent-6" {...props}>
+      {children}
+    </ol>
+  );
+}
+
 const components = {
   h1: createHeading(1),
   h2: createHeading(2),
@@ -104,6 +120,8 @@ const components = {
   img: RoundedImage,
   a: CustomLink,
   code: Code,
+  ul: UnorderedList,
+  ol: OrderedList,
   Table,
 };
 

@@ -1,14 +1,16 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+
 import { getAllPosts, getPostBySlug } from "~/lib/posts";
 import { CustomMDX } from "~/components/mdx";
 
-interface PostPageProps {
+type PostPageProps = {
   params: Promise<{
     slug: string;
   }>;
-}
+};
 
-// generate static params for all posts
+/** generate static params for all posts */
 export async function generateStaticParams() {
   const posts = getAllPosts();
 
@@ -17,14 +19,14 @@ export async function generateStaticParams() {
   }));
 }
 
-// generate metadata for SEO
-export async function generateMetadata({ params }: PostPageProps) {
+/** generate metadata for SEO */
+export async function generateMetadata({
+  params,
+}: PostPageProps): Promise<Metadata> {
   const resolvedParams = await params;
   const post = getPostBySlug(resolvedParams.slug);
 
-  if (!post) {
-    return {};
-  }
+  if (!post) return {};
 
   return {
     title: post.title,
@@ -48,9 +50,7 @@ export default async function PostPage({ params }: PostPageProps) {
   const resolvedParams = await params;
   const post = getPostBySlug(resolvedParams.slug);
 
-  if (!post) {
-    notFound();
-  }
+  if (!post) notFound();
 
   return (
     <section className="max-w-4xl mx-auto px-6 py-8">
