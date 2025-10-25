@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Loader2 } from "lucide-react";
@@ -12,6 +13,12 @@ import { Button } from "~/components/ui/button";
 
 import { useSendVerificationEmail, useShowConfirmationMessage } from "../hooks";
 
+function VerificationChecker() {
+  useShowConfirmationMessage();
+
+  return null;
+}
+
 function handleSaveEmailError(error: Error) {
   if (error.message.includes("duplicate")) {
     toast.error("Email already subscribed!");
@@ -21,8 +28,6 @@ function handleSaveEmailError(error: Error) {
 }
 
 export function NewsletterSection() {
-  useShowConfirmationMessage();
-
   const form = useForm<z.infer<typeof emailInputSchema>>({
     resolver: zodResolver(emailInputSchema),
     defaultValues: {
@@ -53,6 +58,9 @@ export function NewsletterSection() {
 
   return (
     <>
+      <Suspense fallback={null}>
+        <VerificationChecker />
+      </Suspense>
       <p className="text-lg leading-relaxed text-gray-600 mt-6">
         I write infrequently about technology and startups. You can subscribe to
         my newsletter below to get notified of new posts.
