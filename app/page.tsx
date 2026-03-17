@@ -77,6 +77,19 @@ function Description() {
         through their employer.
       </p>
 
+      <p className="text-lg leading-relaxed text-gray-600">
+        I once raised $650K to build a{" "}
+        <Link
+          href="https://www.linkedin.com/company/pathize"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-gray-900 transition-colors"
+        >
+          telehealth platform for Long COVID care.
+        </Link>
+        .
+      </p>
+
       <NewsletterSection />
     </div>
   );
