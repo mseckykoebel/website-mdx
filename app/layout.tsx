@@ -55,9 +55,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased py-6 md:py-12 px-6 md:px-24 lg:px-48 xl:px-64`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <QueryClientProvider>{children}</QueryClientProvider>
+        <div className="min-h-screen py-6 md:py-12 px-6 md:px-24 lg:px-48 xl:px-64">
+          <QueryClientProvider>{children}</QueryClientProvider>
+        </div>
         <Analytics />
         <SpeedInsights />
         <Toaster />

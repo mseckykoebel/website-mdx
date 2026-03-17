@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { getAllPosts } from "~/lib/posts";
 import { getAllThoughts } from "~/lib/thoughts";
-import { Mail, Github, Twitter, Rss } from "lucide-react";
 
 import { Button } from "~/components/ui/button";
 import { Badge } from "~/components/ui/badge";
@@ -13,80 +12,7 @@ import {
   AccordionTrigger,
 } from "~/components/ui/accordion";
 import { NewsletterSection } from "~/app/features/home";
-
-function Header() {
-  const name = "Mason Secky-Koebel";
-  return (
-    <header className="flex justify-between items-center max-w-4xl mx-auto p-6">
-      <div className="flex items-center gap-6">
-        <Link
-          href="/"
-          className="text-xl sm:text-2xl font-bold text-gray-900 hover:text-gray-700 transition-colors"
-        >
-          {name}
-        </Link>
-        <nav className="flex gap-2">
-          <Button variant="secondary" asChild>
-            <Link href="/posts">Posts</Link>
-          </Button>
-          <Button variant="secondary" asChild>
-            <Link href="/thoughts">Thoughts</Link>
-          </Button>
-        </nav>
-      </div>
-      <div className="flex gap-2">
-        <Link href="mailto:mseckykebel@mail.com" aria-label="Email contact">
-          <Button
-            variant="ghost"
-            size="icon"
-            aria-label="Send email"
-            className="hover:cursor-pointer"
-          >
-            <Mail className="h-5 w-5" />
-          </Button>
-        </Link>
-        <Link
-          href="https://github.com/mseckykoebel"
-          target="_blank"
-          aria-label="GitHub profile"
-        >
-          <Button
-            variant="ghost"
-            size="icon"
-            aria-label="Visit GitHub profile"
-            className="hover:cursor-pointer"
-          >
-            <Github className="h-5 w-5" />
-          </Button>
-        </Link>
-        <Link
-          href="https://twitter.com/mseckykoebel"
-          target="_blank"
-          aria-label="Twitter profile"
-        >
-          <Button
-            variant="ghost"
-            size="icon"
-            aria-label="Visit Twitter profile"
-            className="hover:cursor-pointer"
-          >
-            <Twitter className="h-5 w-5" />
-          </Button>
-        </Link>
-        <Link href="/rss" target="_blank" aria-label="RSS feed">
-          <Button
-            variant="ghost"
-            size="icon"
-            aria-label="Subscribe to RSS feed"
-            className="hover:cursor-pointer"
-          >
-            <Rss className="h-5 w-5" />
-          </Button>
-        </Link>
-      </div>
-    </header>
-  );
-}
+import { Header } from "~/app/components/Header";
 
 function Description() {
   return (
@@ -663,8 +589,8 @@ export default function Home() {
       <Header />
       <Description />
       <NewsletterSection />
-      <PostsSection />
       <ThoughtsSection />
+      <PostsSection />
       <WorkSection />
       <NewsSection />
     </div>
