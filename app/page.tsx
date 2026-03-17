@@ -63,31 +63,8 @@ function Header() {
 function Description() {
   return (
     <div className="max-w-4xl mx-auto px-6">
-      <p className="text-lg leading-relaxed text-gray-600">
-        I was the third software engineer at{" "}
-        <Link
-          href="https://www.flexpa.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline hover:text-gray-900 transition-colors"
-        >
-          Flexpa
-        </Link>
-        , an a16z and apollo-backed startup building plaid for healthcare claims
-        data. I left Flexpa to co-found and build{" "}
-        <Link
-          href="https://www.linkedin.com/company/pathize"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline hover:text-gray-900 transition-colors"
-        >
-          Pathize Health
-        </Link>
-        , a telehealth platform for Long COVID care.
-      </p>
-
       <p className="text-lg leading-relaxed text-gray-600 mt-6">
-        I am currently the CTO of{" "}
+        I am the CTO of{" "}
         <Link
           href="https://www.wizardperks.com/"
           target="_blank"
@@ -96,8 +73,8 @@ function Description() {
         >
           Wizard Perks
         </Link>
-        , a corporate benefits platform for employers and membership groups (in
-        Chicago 🐻).
+        , where we help employees and gig workers access non-public discounts
+        through their employer.
       </p>
 
       <NewsletterSection />

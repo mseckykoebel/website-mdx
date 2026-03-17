@@ -53,5 +53,5 @@
     "tw-animate-css": "^1.3.6",
     "typescript": "^5.9.2"
   },
-  "packageManager": "bun@1.2.23"
+  "packageManager": "bun@1.3.10"
 }
