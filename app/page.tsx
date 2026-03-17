@@ -17,7 +17,7 @@ import { Header } from "~/app/components/Header";
 function Description() {
   return (
     <div className="max-w-4xl mx-auto px-6">
-      <p className="text-lg leading-relaxed text-gray-600">
+      <p className="text-xl leading-relaxed text-gray-600">
         I am the CTO of{" "}
         <Link
           href="https://www.wizardperks.com/"
@@ -31,7 +31,7 @@ function Description() {
         through their employer.
       </p>
 
-      <p className="text-lg leading-relaxed text-gray-600 mt-6">
+      <p className="text-xl leading-relaxed text-gray-600 mt-6">
         I once raised $650K to build a{" "}
         <Link
           href="https://www.linkedin.com/company/pathize"
@@ -69,7 +69,7 @@ function PostsSection() {
                 </h3>
                 {index === 0 && <LatestBadge />}
               </div>
-              <time className="text-sm text-gray-500">
+              <time className="text-md text-gray-500">
                 {new Date(post.date).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long",
@@ -105,7 +105,7 @@ function ThoughtsSection() {
                 </h3>
                 {index === 0 && <LatestBadge />}
               </div>
-              <time className="text-sm text-gray-500">
+              <time className="text-md text-gray-500">
                 {new Date(thought.date).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long",

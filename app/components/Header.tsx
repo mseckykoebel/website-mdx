@@ -26,7 +26,7 @@ function NavLinks() {
         href="/posts"
         className="text-sm text-gray-600 hover:text-gray-900 transition-colors underline"
       >
-        Posts
+        Writing
       </Link>
     </>
   );
@@ -128,7 +128,7 @@ export function Header() {
                   href="/posts"
                   className="text-sm text-gray-600 hover:text-gray-900 transition-colors underline py-2"
                 >
-                  Posts
+                  Writing
                 </Link>
               </SheetClose>
             </nav>

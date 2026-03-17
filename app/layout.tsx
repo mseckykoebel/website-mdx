@@ -1,7 +1,7 @@
 import "./globals.css";
 
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -9,8 +9,8 @@ import { baseUrl } from "~/app/sitemap";
 import { QueryClientProvider } from "~/app/providers/QueryClientProvider";
 import { Toaster } from "~/components/ui/sonner";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -55,7 +55,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${geistMono.variable} antialiased font-sans`}
       >
         <div className="min-h-screen py-6 md:py-12 px-6 md:px-24 lg:px-48 xl:px-64">
           <QueryClientProvider>{children}</QueryClientProvider>

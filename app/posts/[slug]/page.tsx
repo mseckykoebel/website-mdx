@@ -76,9 +76,9 @@ export default async function PostPage({ params }: PostPageProps) {
       />
 
       <header className="mb-8">
-        <h1 className="text-3xl font-bold mb-2 tracking-tight">{post.title}</h1>
+        <h1 className="text-2xl font-bold mb-2 tracking-tight">{post.title}</h1>
         <div className="flex justify-between items-center mt-2 mb-4">
-          <time className="text-sm text-gray-600">
+          <time className="text-md text-gray-600">
             {new Date(post.date).toLocaleDateString("en-US", {
               year: "numeric",
               month: "long",
