@@ -12,7 +12,7 @@ export default function PostsPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-8">
-      <h1 className="text-2xl font-bold mb-6 text-gray-900">
+      <h1 className="text-xl font-bold mb-6 text-gray-900">
         Writing
       </h1>
       <div className="space-y-6">
@@ -25,7 +25,7 @@ export default function PostsPage() {
                 </h2>
                 {index === 0 && <LatestBadge />}
               </div>
-              <time className="text-md text-gray-500">
+              <time className="text-sm text-gray-500">
                 {new Date(post.date).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long",

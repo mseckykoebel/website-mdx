@@ -17,7 +17,7 @@ import { Header } from "~/app/components/Header";
 function Description() {
   return (
     <div className="max-w-4xl mx-auto px-6">
-      <p className="text-xl leading-relaxed text-gray-600">
+      <p className="text-lg leading-relaxed text-gray-600">
         I am the CTO of{" "}
         <Link
           href="https://www.wizardperks.com/"
@@ -31,7 +31,7 @@ function Description() {
         through their employer.
       </p>
 
-      <p className="text-xl leading-relaxed text-gray-600 mt-6">
+      <p className="text-lg leading-relaxed text-gray-600 mt-6">
         I once raised $650K to build a{" "}
         <Link
           href="https://www.linkedin.com/company/pathize"
@@ -56,7 +56,7 @@ function PostsSection() {
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-8">
-      <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6">
+      <h2 className="text-xl font-bold text-gray-900 mb-6">
         Writing
       </h2>
       <div className="space-y-6">
@@ -69,7 +69,7 @@ function PostsSection() {
                 </h3>
                 {index === 0 && <LatestBadge />}
               </div>
-              <time className="text-md text-gray-500">
+              <time className="text-sm text-gray-500">
                 {new Date(post.date).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long",
@@ -92,7 +92,7 @@ function ThoughtsSection() {
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-8">
-      <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6">
+      <h2 className="text-xl font-bold text-gray-900 mb-6">
         Thoughts
       </h2>
       <div className="space-y-6">
@@ -105,7 +105,7 @@ function ThoughtsSection() {
                 </h3>
                 {index === 0 && <LatestBadge />}
               </div>
-              <time className="text-md text-gray-500">
+              <time className="text-sm text-gray-500">
                 {new Date(thought.date).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long",
@@ -126,7 +126,7 @@ function ThoughtsSection() {
 function NewsSection() {
   return (
     <div className="max-w-4xl mx-auto px-6 py-8">
-      <h2 className="text-xl sm:text-2xl font-bold mb-6 text-gray-900">News</h2>
+      <h2 className="text-xl font-bold mb-6 text-gray-900">News</h2>
       <ul className="space-y-4">
         <li>
           <Link
@@ -210,7 +210,7 @@ function NewsSection() {
 function WorkSection() {
   return (
     <div className="max-w-4xl mx-auto px-6 mt-6">
-      <h2 className="text-xl sm:text-2xl font-bold mb-6 text-gray-900">Work</h2>
+      <h2 className="text-xl font-bold mb-6 text-gray-900">Work</h2>
 
       <Accordion type="single" collapsible className="w-full space-y-4">
         <AccordionItem

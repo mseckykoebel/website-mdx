@@ -62,7 +62,7 @@ export function NewsletterSection() {
       <Suspense fallback={null}>
         <VerificationChecker />
       </Suspense>
-      <p className="text-xl leading-relaxed text-gray-600 mt-6">
+      <p className="text-lg leading-relaxed text-gray-600 mt-6">
         I write longer-form posts (infrequently) about technology and startups.
         You can be notified of new posts by subscribing below. Alternatively,
         you can find more frequent thoughts{" "}
