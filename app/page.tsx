@@ -63,7 +63,7 @@ function Header() {
 function Description() {
   return (
     <div className="max-w-4xl mx-auto px-6">
-      <p className="text-lg leading-relaxed text-gray-600 mt-6">
+      <p className="text-lg leading-relaxed text-gray-600">
         I am the CTO of{" "}
         <Link
           href="https://www.wizardperks.com/"
@@ -77,7 +77,7 @@ function Description() {
         through their employer.
       </p>
 
-      <p className="text-lg leading-relaxed text-gray-600">
+      <p className="text-lg leading-relaxed text-gray-600 mt-6">
         I once raised $650K to build a{" "}
         <Link
           href="https://www.linkedin.com/company/pathize"
