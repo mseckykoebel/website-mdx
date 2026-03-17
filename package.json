@@ -6,7 +6,8 @@
     "dev": "next dev --port 3005",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "new-thought": "bun run scripts/new-thought.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
