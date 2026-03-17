@@ -1,4 +1,5 @@
 import { getAllPosts } from "~/lib/posts";
+import { getAllThoughts } from "~/lib/thoughts";
 
 export const baseUrl =
   process.env.NODE_ENV === "development"
@@ -11,10 +12,15 @@ export default async function sitemap() {
     lastModified: post.date.split("T")[0],
   }));
 
-  const routes = [""].map((route) => ({
+  const thoughts = getAllThoughts().map((thought) => ({
+    url: `${baseUrl}/thoughts/${thought.slug}`,
+    lastModified: thought.date.split("T")[0],
+  }));
+
+  const routes = ["", "/posts", "/thoughts"].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date().toISOString().split("T")[0],
   }));
 
-  return [...routes, ...posts];
+  return [...routes, ...posts, ...thoughts];
 }

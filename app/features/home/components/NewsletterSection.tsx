@@ -1,6 +1,7 @@
 "use client";
 
 import { Suspense } from "react";
+import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Loader2 } from "lucide-react";
@@ -57,13 +58,21 @@ export function NewsletterSection() {
   const isButtonDisabled = loading || !form.formState.isValid;
 
   return (
-    <>
+    <div className="max-w-4xl mx-auto px-6">
       <Suspense fallback={null}>
         <VerificationChecker />
       </Suspense>
       <p className="text-lg leading-relaxed text-gray-600 mt-6">
-        I write infrequently about technology and startups. You can subscribe to
-        my newsletter below to get notified of new posts.
+        I write longer-form posts (infrequently) about technology and startups.
+        You can be notified of new posts by subscribing below. Alternatively,
+        you can find more frequent thoughts{" "}
+        <Link
+          href="/thoughts"
+          className="text-gray-600 hover:text-gray-900 transition-colors underline"
+        >
+          here
+        </Link>
+        .
       </p>
       <div className="flex flex-col sm:flex-row w-full max-w-md gap-2 mt-6">
         <Input
@@ -85,6 +94,6 @@ export function NewsletterSection() {
           {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Subscribe"}
         </Button>
       </div>
-    </>
+    </div>
   );
 }

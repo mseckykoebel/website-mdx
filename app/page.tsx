@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getAllPosts } from "~/lib/posts";
+import { getAllThoughts } from "~/lib/thoughts";
 import { Mail, Github, Twitter, Rss } from "lucide-react";
 
 import { Button } from "~/components/ui/button";
@@ -17,10 +18,30 @@ function Header() {
   const name = "Mason Secky-Koebel";
   return (
     <header className="flex justify-between items-center max-w-4xl mx-auto p-6">
-      <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{name}</h1>
+      <div className="flex items-center gap-6">
+        <Link
+          href="/"
+          className="text-xl sm:text-2xl font-bold text-gray-900 hover:text-gray-700 transition-colors"
+        >
+          {name}
+        </Link>
+        <nav className="flex gap-2">
+          <Button variant="secondary" asChild>
+            <Link href="/posts">Posts</Link>
+          </Button>
+          <Button variant="secondary" asChild>
+            <Link href="/thoughts">Thoughts</Link>
+          </Button>
+        </nav>
+      </div>
       <div className="flex gap-2">
         <Link href="mailto:mseckykebel@mail.com" aria-label="Email contact">
-          <Button variant="ghost" size="icon" aria-label="Send email">
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label="Send email"
+            className="hover:cursor-pointer"
+          >
             <Mail className="h-5 w-5" />
           </Button>
         </Link>
@@ -29,7 +50,12 @@ function Header() {
           target="_blank"
           aria-label="GitHub profile"
         >
-          <Button variant="ghost" size="icon" aria-label="Visit GitHub profile">
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label="Visit GitHub profile"
+            className="hover:cursor-pointer"
+          >
             <Github className="h-5 w-5" />
           </Button>
         </Link>
@@ -42,6 +68,7 @@ function Header() {
             variant="ghost"
             size="icon"
             aria-label="Visit Twitter profile"
+            className="hover:cursor-pointer"
           >
             <Twitter className="h-5 w-5" />
           </Button>
@@ -51,6 +78,7 @@ function Header() {
             variant="ghost"
             size="icon"
             aria-label="Subscribe to RSS feed"
+            className="hover:cursor-pointer"
           >
             <Rss className="h-5 w-5" />
           </Button>
@@ -85,12 +113,10 @@ function Description() {
           rel="noopener noreferrer"
           className="underline hover:text-gray-900 transition-colors"
         >
-          telehealth platform for Long COVID care.
+          telehealth platform for Long COVID care
         </Link>
         .
       </p>
-
-      <NewsletterSection />
     </div>
   );
 }
@@ -100,11 +126,11 @@ function LatestBadge() {
 }
 
 function PostsSection() {
-  const posts = getAllPosts();
+  const posts = getAllPosts().slice(0, 5);
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-8">
-      <h2 className="text-xl sm:text-2xl font-bold mb-6 text-gray-900">
+      <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6">
         Writing
       </h2>
       <div className="space-y-6">
@@ -128,6 +154,45 @@ function PostsSection() {
           </article>
         ))}
       </div>
+      <Button variant="outline" asChild className="mt-6">
+        <Link href="/posts">View all</Link>
+      </Button>
+    </div>
+  );
+}
+
+function ThoughtsSection() {
+  const thoughts = getAllThoughts().slice(0, 5);
+
+  return (
+    <div className="max-w-4xl mx-auto px-6 py-8">
+      <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6">
+        Thoughts
+      </h2>
+      <div className="space-y-6">
+        {thoughts.map((thought, index) => (
+          <article key={thought.slug}>
+            <Link href={`/thoughts/${thought.slug}`} className="group block">
+              <div className="flex items-center gap-2">
+                <h3 className="text-lg font-medium text-gray-600 group-hover:text-gray-900 transition-colors underline">
+                  {thought.title}
+                </h3>
+                {index === 0 && <LatestBadge />}
+              </div>
+              <time className="text-sm text-gray-500">
+                {new Date(thought.date).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </time>
+            </Link>
+          </article>
+        ))}
+      </div>
+      <Button variant="outline" asChild className="mt-6">
+        <Link href="/thoughts">View all</Link>
+      </Button>
     </div>
   );
 }
@@ -254,16 +319,41 @@ function WorkSection() {
           <AccordionContent>
             <div className="pt-4 pb-2 space-y-4">
               <p className="text-gray-600">
-                I&apos;m currently the CTO of Wizard Perks. I served as founding
-                engineer from January to October 2025.
+                I&apos;ve been the CTO of Wizard Perks since January 2025.
               </p>
 
               <p className="text-gray-600">
-                Modern perks/corporate benefits companies are still largely
-                based on newsletters and static websites. We&apos;re building a
-                modern alternative, and exploring how the category of corporate
-                benefits can be re-defined and expanded to serve different
-                markets. We&apos;re backed by{" "}
+                We help employees and gig workers access non-public discounts,
+                specifically through their employer. We&apos;re a more modern
+                (and less ugly){" "}
+                <Link
+                  href="https://www.perksatwork.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-gray-900 transition-colors"
+                >
+                  Perks at Work
+                </Link>
+                . To date, we&apos;ve done over $300K in revenue, and are live
+                with great partners like{" "}
+                <Link
+                  href="https://www.payactiv.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-gray-900 transition-colors"
+                >
+                  Payactiv
+                </Link>{" "}
+                and{" "}
+                <Link
+                  href="https://unifiservice.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-gray-900 transition-colors"
+                >
+                  UNIFI
+                </Link>
+                . We&apos;re backed by{" "}
                 <Link
                   href=""
                   target="_blank"
@@ -276,14 +366,14 @@ function WorkSection() {
               </p>
 
               <p className="text-gray-600">
-                If you&apos;re interested in working with us,{" "}
+                If you&apos;re interested in working with us, you can{" "}
                 <Link
                   href=""
                   target="_blank"
                   rel="noopener noreferrer"
                   className="underline hover:text-gray-900 transition-colors"
                 >
-                  reach out
+                  reach out here
                 </Link>
                 .
               </p>
@@ -323,23 +413,9 @@ function WorkSection() {
           <AccordionContent>
             <div className="pt-4 pb-2 space-y-4">
               <p className="text-gray-600">
-                <Link
-                  href=""
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-gray-900 transition-colors"
-                >
-                  Yakov
-                </Link>{" "}
-                was an advisor and consultant at Pathize. After I left Pathize,
-                he was at the top of my list of people to work with.
-              </p>
-
-              <p className="text-gray-600">
-                BLH is working on clinical infrastructure/tooling that lets
-                clinics that offer novel therapeutics (like ketamine,
-                psilocybin, etc.) to scale their operations, and accept
-                insurance.
+                I&apos;m passionate about mental health and briefly worked at
+                Big Leap Health as a software engineer. I believe in psychedelic
+                therapy in general and its potential to help get people unstuck.
               </p>
             </div>
           </AccordionContent>
@@ -377,25 +453,22 @@ function WorkSection() {
           <AccordionContent>
             <div className="pt-4 pb-2 space-y-4">
               <p className="text-gray-600">
-                I co-founded Pathize Health late in 2022.
+                Pathize&apos;s bet was simple: Long COVID was one of the largest
+                public health risks in the country. Nobody was paying attention
+                to it.
               </p>
 
               <p className="text-gray-600">
-                The bet was simple: Long COVID and its associated comorbidities
-                was the largest public health risk in the country.
+                We built the first real-time activity tracker for
+                energy-limiting conditions. It could track energy expenditure of
+                everyday activities (washing dishes, walking the dog, etc.)
+                instead of workouts.
               </p>
 
               <p className="text-gray-600">
-                From this, the product became simple: build a symptom and
-                real-time activity tracker, and then expand into tech-enabled
-                services / telehealth.
-              </p>
-
-              <p className="text-gray-600">
-                I spent twelve months straight building Pathize, created the
-                user acquisition funnel, and took the company to a projected
-                $75K in ARR. It was the first time someone paid for something I
-                had made.
+                Before I left, we were working on a move into telehealth. The
+                company was at $3K MRR, and had hundreds of happy paying users.
+                I was the first time I was paid for software I had built.
               </p>
             </div>
           </AccordionContent>
@@ -483,18 +556,8 @@ function WorkSection() {
             <div className="pt-4 pb-2">
               <div className="space-y-4">
                 <p className="text-gray-600">
-                  I was the third developer hired at Flexpa after graduating
-                  from Northwestern.
-                </p>
-
-                <p className="text-gray-600">
-                  By the time I joined Flexpa, their product, &quot;Plaid for
-                  Healthcare&quot;, was in full swing.
-                </p>
-
-                <p className="text-gray-600">
-                  With the time I spent there, I made core contributions to the
-                  OAuth widget, as well as worked on a theming system.
+                  My first internship was at Flexpa, where I learned how to
+                  write quality code for the first time.
                 </p>
               </div>
             </div>
@@ -534,17 +597,15 @@ function WorkSection() {
             <div className="pt-4 pb-2">
               <div className="space-y-4">
                 <p className="text-gray-600">
-                  I was the first web developer at Brinc Drones, back when Blake
-                  was the only employee, and we were working out of his
-                  parents&apos; house.
+                  My first programming/web dev job was at Brinc Drones, back
+                  when Blake was the only employee. He was working out of his
+                  parents&apos; house at the time.
                 </p>
 
                 <p className="text-gray-600">
-                  While that may not sound too impressive, he was 19 at the
-                  time. He received private funding in September of 2020, and as
-                  of writing, Brinc is worth $300M. While I basically just
+                  As of writing, Brinc is worth $300M. While I basically just
                   maintained the website, this was my first proper foray into
-                  startups.
+                  the startup world.
                 </p>
               </div>
             </div>
@@ -587,13 +648,6 @@ function WorkSection() {
                   Technically my first job. I parked cars for about eight hours
                   a day, several days a week.
                 </p>
-
-                <p className="text-gray-600">
-                  At this point in my life, getting a job and keeping one pushed
-                  me far out of my comfort zone. I was a fairly introverted kid,
-                  and had a hard time looking people in the eye. I actually used
-                  to wear sunglasses so it was easier.
-                </p>
               </div>
             </div>
           </AccordionContent>
@@ -608,7 +662,9 @@ export default function Home() {
     <div>
       <Header />
       <Description />
+      <NewsletterSection />
       <PostsSection />
+      <ThoughtsSection />
       <WorkSection />
       <NewsSection />
     </div>
