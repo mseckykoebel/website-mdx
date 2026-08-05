@@ -11,7 +11,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "~/components/ui/accordion";
-import { NewsletterSection } from "~/app/features/home";
 import { Header } from "~/app/components/Header";
 
 function Description() {
@@ -56,9 +55,7 @@ function PostsSection() {
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-8">
-      <h2 className="text-xl font-bold text-gray-900 mb-6">
-        Writing
-      </h2>
+      <h2 className="text-xl font-bold text-gray-900 mb-6">Writing</h2>
       <div className="space-y-6">
         {posts.map((post, index) => (
           <article key={post.slug}>
@@ -92,9 +89,7 @@ function ThoughtsSection() {
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-8">
-      <h2 className="text-xl font-bold text-gray-900 mb-6">
-        Thoughts
-      </h2>
+      <h2 className="text-xl font-bold text-gray-900 mb-6">Thoughts</h2>
       <div className="space-y-6">
         {thoughts.map((thought, index) => (
           <article key={thought.slug}>
@@ -130,7 +125,7 @@ function NewsSection() {
       <ul className="space-y-4">
         <li>
           <Link
-            href="https://example.com/long-covid-hope"
+            href="https://www.psychologytoday.com/us/blog/shouldstorm/202404/the-many-reasons-for-hope-in-long-covid"
             target="_blank"
             rel="noopener noreferrer"
             className="text-lg text-gray-600 hover:text-gray-900 transition-colors underline"
@@ -140,7 +135,7 @@ function NewsSection() {
         </li>
         <li>
           <Link
-            href="https://example.com/pathize-biometrics"
+            href="https://www.forbes.com/sites/gusalexiou/2023/10/18/pathize-app-uses-biometrics-to-help-long-covid-patients-manage-their-fatigue/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-lg text-gray-600 hover:text-gray-900 transition-colors underline"
@@ -151,7 +146,7 @@ function NewsSection() {
         </li>
         <li>
           <Link
-            href="https://example.com/jupiterdx-launch"
+            href="https://www.bizjournals.com/chicago/inno/stories/fundings/2023/01/24/health-tech-startup-jupiterdx-preseed.html"
             target="_blank"
             rel="noopener noreferrer"
             className="text-lg text-gray-600 hover:text-gray-900 transition-colors underline"
@@ -161,45 +156,13 @@ function NewsSection() {
         </li>
         <li>
           <Link
-            href="https://example.com/flexpa-raises"
+            href="https://www.axios.com/pro/health-tech-deals/2022/06/16/flexpa-raises-9m-seed-health-data-sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="text-lg text-gray-600 hover:text-gray-900 transition-colors underline"
           >
             Flexpa raises $8.5M to build new infrastructure for patient access
             APIs
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="https://example.com/raiso-safety"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-lg text-gray-600 hover:text-gray-900 transition-colors underline"
-          >
-            RAISO Student Group Explores the Responsibility and Safety of AI
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="https://example.com/raiso-interview"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-lg text-gray-600 hover:text-gray-900 transition-colors underline"
-          >
-            Responsible AI and RAISO with Bijal Mehta and Mason Secky-Koebel |
-            AI with Alex
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="https://example.com/raiso-awareness"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-lg text-gray-600 hover:text-gray-900 transition-colors underline"
-          >
-            New student group spreads awareness of artificial intelligence
-            ethics, big data injustices
           </Link>
         </li>
       </ul>
@@ -588,7 +551,7 @@ export default function Home() {
     <div>
       <Header />
       <Description />
-      <NewsletterSection />
+
       <ThoughtsSection />
       <PostsSection />
       <WorkSection />
