@@ -53,8 +53,7 @@ function Description() {
       </p>
 
       <p className="text-lg leading-relaxed text-gray-600 mt-6">
-        I write infrequently about life and startups; I usually opt for posting
-        when I feel I have something interesting to say.
+        I write infrequently about life and startups.
       </p>
     </div>
   );
