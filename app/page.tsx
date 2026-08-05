@@ -26,21 +26,35 @@ function Description() {
         >
           Wizard Perks
         </Link>
-        , where we help employees and gig workers access non-public discounts
-        through their employer.
+        , where we help employees and gig workers access non-public discounts.
       </p>
 
       <p className="text-lg leading-relaxed text-gray-600 mt-6">
-        I once raised $650K to build a{" "}
+        Previously, I was the founder of{" "}
         <Link
           href="https://www.linkedin.com/company/pathize"
           target="_blank"
           rel="noopener noreferrer"
           className="underline hover:text-gray-900 transition-colors"
         >
-          telehealth platform for Long COVID care
+          Pathize Health
         </Link>
-        .
+        , a telehealth platform for Long COVID care. We were Drive
+        Capital&apos;s first{" "}
+        <Link
+          href="https://drivecapital.com/seed-program"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-gray-900 transition-colors"
+        >
+          seed investment
+        </Link>{" "}
+        in Chicago.
+      </p>
+
+      <p className="text-lg leading-relaxed text-gray-600 mt-6">
+        I write infrequently about life and startups; I usually opt for posting
+        when I feel I have something interesting to say.
       </p>
     </div>
   );
@@ -118,10 +132,10 @@ function ThoughtsSection() {
   );
 }
 
-function NewsSection() {
+function PublicationsSection() {
   return (
     <div className="max-w-4xl mx-auto px-6 py-8">
-      <h2 className="text-xl font-bold mb-6 text-gray-900">News</h2>
+      <h2 className="text-xl font-bold mb-6 text-gray-900">Publications</h2>
       <ul className="space-y-4">
         <li>
           <Link
@@ -213,18 +227,8 @@ function WorkSection() {
 
               <p className="text-gray-600">
                 We help employees and gig workers access non-public discounts,
-                specifically through their employer. We&apos;re a more modern
-                (and less ugly){" "}
-                <Link
-                  href="https://www.perksatwork.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-gray-900 transition-colors"
-                >
-                  Perks at Work
-                </Link>
-                . To date, we&apos;ve done over $300K in revenue, and are live
-                with great partners like{" "}
+                specifically through their employer. We&apos;re profitable and
+                growing, and are live with great partners like{" "}
                 <Link
                   href="https://www.payactiv.com/"
                   target="_blank"
@@ -250,19 +254,6 @@ function WorkSection() {
                   className="underline hover:text-gray-900 transition-colors"
                 >
                   Village Global
-                </Link>
-                .
-              </p>
-
-              <p className="text-gray-600">
-                If you&apos;re interested in working with us, you can{" "}
-                <Link
-                  href=""
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-gray-900 transition-colors"
-                >
-                  reach out here
                 </Link>
                 .
               </p>
@@ -293,7 +284,7 @@ function WorkSection() {
                     Big Leap Health - Software Engineer
                   </div>
                   <div className="text-sm text-gray-500">
-                    September 2024 - Present
+                    September 2024 - December 2024
                   </div>
                 </div>
               </div>
@@ -486,15 +477,13 @@ function WorkSection() {
             <div className="pt-4 pb-2">
               <div className="space-y-4">
                 <p className="text-gray-600">
-                  My first programming/web dev job was at Brinc Drones, back
-                  when Blake was the only employee. He was working out of his
-                  parents&apos; house at the time.
+                  My first programming/web dev job was at BRINC Drones, back
+                  when Blake was the only employee. At the time, he was working
+                  out of his parents house.
                 </p>
 
                 <p className="text-gray-600">
-                  As of writing, Brinc is worth $300M. While I basically just
-                  maintained the website, this was my first proper foray into
-                  the startup world.
+                  BRINC recently raised a $125M Series B.
                 </p>
               </div>
             </div>
@@ -555,7 +544,7 @@ export default function Home() {
       <ThoughtsSection />
       <PostsSection />
       <WorkSection />
-      <NewsSection />
+      <PublicationsSection />
     </div>
   );
 }
