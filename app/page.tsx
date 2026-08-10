@@ -534,13 +534,13 @@ function WorkSection({ ...props }: ComponentPropsWithoutRef<"div">) {
 export default function Home() {
   return (
     <div>
-      <Header role="navigation" />
-      <Description role="banner" />
+      <Header />
+      <Description />
 
-      <ThoughtsSection role="feed" />
+      <ThoughtsSection />
       <PostsSection role="main" />
-      <WorkSection role="complementary" />
-      <PublicationsSection role="feed" />
+      <WorkSection />
+      <PublicationsSection />
     </div>
   );
 }
