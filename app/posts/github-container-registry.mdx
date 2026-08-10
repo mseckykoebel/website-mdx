@@ -30,7 +30,9 @@ There are some good instructions on how to do this here. In the scopes section, 
 
 The next step involves signing in to the container registry service. Enter this command in a fresh terminal:
 
-`docker login -u <GITHUB-USERNAME> -p <GITHUB-PAT-YOU-JUST-MADE> ghcr.io`
+```shell
+docker login -u <GITHUB-USERNAME> -p <GITHUB-PAT-YOU-JUST-MADE> ghcr.io
+```
 
 There are a few variations of this online, including some with the echo command in front of it, which is strange because all this does is display the text of whatever argument the command takes.
 
@@ -46,17 +48,23 @@ One important concept to cover before deployment is how to *re-name* images, as 
 
 Running the command `docker images` should give you a list of all of the images you have on your machine, including, in my case, `project_1`. If I want to rename `project_1` to something more exciting, like `mason/my-awesome-app`, I would type the following:
 
-`docker image tag project_1:latest mason/my-awesome-app:latest`
+```shell
+docker image tag project_1:latest mason/my-awesome-app:latest
+```
 
 The `tag` command is used to give a version to the image ('latest' is pretty common, but it can be something like `v1`). If I *did* want to call it `v1` instead of `latest`, I'd say:
 
-`docker image tag project_1:latest mason/my-awesome-app:v1`
+```shell
+docker image tag project_1:latest mason/my-awesome-app:v1
+```
 
 This assumes `project_1` already has a tag of `latest`, which it probably does as it's the default tag that Docker adds when it builds images. For this example, we'll keep the tag as `latest`.
 
 With that, let's finally deploy our image to GitHub's package repository. 
 
-`docker push ghcr.io/mason/my-awesome-app:latest`
+```shell
+docker push ghcr.io/mason/my-awesome-app:latest
+```
 
 And that's it! If you head to the GitHub repository that package is in, and select `packages`, you should see something like this.
 

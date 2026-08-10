@@ -180,6 +180,19 @@
   @apply p-0 bg-transparent text-inherit;
 }
 
+/* token colors consumed by sugar-high's inline style="color: var(--sh-*)" */
+.prose pre {
+  --sh-class: #7dd3fc;
+  --sh-identifier: #e5e7eb;
+  --sh-sign: #9ca3af;
+  --sh-property: #f472b6;
+  --sh-entity: #c4b5fd;
+  --sh-jsxliterals: #a5b4fc;
+  --sh-string: #86efac;
+  --sh-keyword: #f0abfc;
+  --sh-comment: #6b7280;
+}
+
 .prose ul {
   @apply list-disc list-inside mb-4 space-y-1;
 }

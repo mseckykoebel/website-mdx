@@ -1,4 +1,4 @@
-import React from "react";
+import React, { isValidElement, type ComponentPropsWithoutRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -27,22 +27,16 @@ function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
   );
 }
 
-function CustomLink(props: any) {
-  const href = props.href;
-
+function CustomLink({ href = "", ...props }: ComponentPropsWithoutRef<"a">) {
   if (href.startsWith("/")) {
-    return (
-      <Link href={href} {...props}>
-        {props.children}
-      </Link>
-    );
+    return <Link href={href} {...props} />;
   }
 
   if (href.startsWith("#")) {
-    return <a {...props} />;
+    return <a href={href} {...props} />;
   }
 
-  return <a target="_blank" rel="noopener noreferrer" {...props} />;
+  return <a href={href} target="_blank" rel="noopener noreferrer" {...props} />;
 }
 
 function RoundedImage(props: any) {
@@ -55,9 +49,45 @@ function RoundedImage(props: any) {
   return <Image alt={props.alt} className="rounded-lg" {...props} />;
 }
 
-function Code({ children, ...props }: any) {
-  const codeHTML = highlight(children);
-  return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
+function Code({
+  children,
+  className,
+  ...props
+}: ComponentPropsWithoutRef<"code">) {
+  // fenced blocks arrive as `language-x`; bare inline code stays unhighlighted
+  // so prose like `npm run dev` isn't colored as if it were source
+  const isBlock = typeof className === "string" && className.includes("language-");
+
+  if (!isBlock || typeof children !== "string") {
+    return (
+      <code className={className} {...props}>
+        {children}
+      </code>
+    );
+  }
+
+  // sugar-high escapes its input; MDX here is first-party only
+  return (
+    <code
+      className={className}
+      dangerouslySetInnerHTML={{ __html: highlight(children) }}
+      {...props}
+    />
+  );
+}
+
+function Pre({ children, ...props }: ComponentPropsWithoutRef<"pre">) {
+  const language =
+    isValidElement<{ className?: string }>(children) &&
+    typeof children.props.className === "string"
+      ? children.props.className.replace(/^.*language-/, "")
+      : undefined;
+
+  return (
+    <pre data-language={language} {...props}>
+      {children}
+    </pre>
+  );
 }
 
 function slugify(str: string) {
@@ -120,6 +150,7 @@ const components = {
   img: RoundedImage,
   a: CustomLink,
   code: Code,
+  pre: Pre,
   ul: UnorderedList,
   ol: OrderedList,
   Table,

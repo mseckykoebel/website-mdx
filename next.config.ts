@@ -6,15 +6,17 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: '**',
+        protocol: "https",
+        hostname: "**",
       },
       {
-        protocol: 'http',
-        hostname: '**',
+        protocol: "http",
+        hostname: "**",
       },
     ],
+    imageSizes: [50, 75],
   },
+  reactCompiler: true,
 };
 
 const withMDX = createMDX();
