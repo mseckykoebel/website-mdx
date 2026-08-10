@@ -1,14 +1,18 @@
 "use client";
 
+import type { ComponentPropsWithoutRef } from "react";
 import Link from "next/link";
 import { Mail, Github, Rss } from "lucide-react";
 
 import { Button } from "~/components/ui/button";
 
-export function Header() {
+export function Header({ ...props }: ComponentPropsWithoutRef<"header">) {
   const name = "Mason Secky-Koebel";
   return (
-    <header className="flex justify-between items-start max-w-4xl mx-auto p-6 gap-6">
+    <header
+      className="flex justify-between items-start max-w-4xl mx-auto p-6 gap-6"
+      {...props}
+    >
       {/* name (left) */}
       <div className="flex items-center gap-4">
         <Link

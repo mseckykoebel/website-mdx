@@ -1,3 +1,4 @@
+import type { ComponentPropsWithoutRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { getAllPosts } from "~/lib/posts";
@@ -13,9 +14,9 @@ import {
 } from "~/components/ui/accordion";
 import { Header } from "~/app/components/Header";
 
-function Description() {
+function Description({ ...props }: ComponentPropsWithoutRef<"div">) {
   return (
-    <div className="max-w-4xl mx-auto px-6">
+    <div className="max-w-4xl mx-auto px-6" {...props}>
       <p className="text-lg leading-relaxed text-gray-600">
         I am the CTO of{" "}
         <Link
@@ -59,15 +60,11 @@ function Description() {
   );
 }
 
-function LatestBadge() {
-  return <Badge variant="outline">Latest</Badge>;
-}
-
-function PostsSection() {
+function PostsSection({ ...props }: ComponentPropsWithoutRef<"div">) {
   const posts = getAllPosts().slice(0, 5);
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-8">
+    <div className="max-w-4xl mx-auto px-6 py-8" {...props}>
       <h2 className="text-xl font-bold text-gray-900 mb-6">Writing</h2>
       <div className="space-y-6">
         {posts.map((post, index) => (
@@ -77,7 +74,7 @@ function PostsSection() {
                 <h3 className="text-lg font-medium text-gray-600 group-hover:text-gray-900 transition-colors underline">
                   {post.title}
                 </h3>
-                {index === 0 && <LatestBadge />}
+                {index === 0 && <Badge variant="outline">Latest</Badge>}
               </div>
               <time className="text-sm text-gray-500">
                 {new Date(post.date).toLocaleDateString("en-US", {
@@ -97,11 +94,11 @@ function PostsSection() {
   );
 }
 
-function ThoughtsSection() {
+function ThoughtsSection({ ...props }: ComponentPropsWithoutRef<"div">) {
   const thoughts = getAllThoughts().slice(0, 5);
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-8">
+    <div className="max-w-4xl mx-auto px-6 py-8" {...props}>
       <h2 className="text-xl font-bold text-gray-900 mb-6">Thoughts</h2>
       <div className="space-y-6">
         {thoughts.map((thought, index) => (
@@ -111,7 +108,7 @@ function ThoughtsSection() {
                 <h3 className="text-lg font-medium text-gray-600 group-hover:text-gray-900 transition-colors underline">
                   {thought.title}
                 </h3>
-                {index === 0 && <LatestBadge />}
+                {index === 0 && <Badge variant="outline">Latest</Badge>}
               </div>
               <time className="text-sm text-gray-500">
                 {new Date(thought.date).toLocaleDateString("en-US", {
@@ -131,9 +128,9 @@ function ThoughtsSection() {
   );
 }
 
-function PublicationsSection() {
+function PublicationsSection({ ...props }: ComponentPropsWithoutRef<"div">) {
   return (
-    <div className="max-w-4xl mx-auto px-6 py-8">
+    <div className="max-w-4xl mx-auto px-6 py-8" {...props}>
       <h2 className="text-xl font-bold mb-6 text-gray-900">Publications</h2>
       <ul className="space-y-4">
         <li>
@@ -183,9 +180,9 @@ function PublicationsSection() {
   );
 }
 
-function WorkSection() {
+function WorkSection({ ...props }: ComponentPropsWithoutRef<"div">) {
   return (
-    <div className="max-w-4xl mx-auto px-6 mt-6">
+    <div className="max-w-4xl mx-auto px-6 mt-6" {...props}>
       <h2 className="text-xl font-bold mb-6 text-gray-900">Work</h2>
 
       <Accordion type="single" collapsible className="w-full space-y-4">
@@ -537,13 +534,13 @@ function WorkSection() {
 export default function Home() {
   return (
     <div>
-      <Header />
-      <Description />
+      <Header role="navigation" />
+      <Description role="banner" />
 
-      <ThoughtsSection />
-      <PostsSection />
-      <WorkSection />
-      <PublicationsSection />
+      <ThoughtsSection role="feed" />
+      <PostsSection role="main" />
+      <WorkSection role="complementary" />
+      <PublicationsSection role="feed" />
     </div>
   );
 }
