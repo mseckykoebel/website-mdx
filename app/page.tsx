@@ -30,7 +30,7 @@ function Description({ ...props }: ComponentPropsWithoutRef<"div">) {
         , where we help employees and gig workers access non-public discounts.
       </p>
 
-      <p className="text-lg leading-relaxed text-gray-600 mt-6">
+      {/*<p className="text-lg leading-relaxed text-gray-600 mt-6">
         Previously, I was the founder of{" "}
         <Link
           href="https://www.linkedin.com/company/pathize"
@@ -51,7 +51,7 @@ function Description({ ...props }: ComponentPropsWithoutRef<"div">) {
           seed investment
         </Link>{" "}
         in Chicago.
-      </p>
+      </p>*/}
 
       <p className="text-lg leading-relaxed text-gray-600 mt-6">
         I write infrequently about life and startups.
@@ -537,10 +537,11 @@ export default function Home() {
       <Header />
       <Description />
 
-      <ThoughtsSection />
+      {/* NOTE: bringing these back at a later time */}
+      {/*<ThoughtsSection />
       <PostsSection role="main" />
       <WorkSection />
-      <PublicationsSection />
+      <PublicationsSection />*/}
     </div>
   );
 }
