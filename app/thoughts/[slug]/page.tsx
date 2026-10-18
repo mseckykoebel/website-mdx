@@ -53,13 +53,13 @@ export default async function ThoughtPage({ params }: ThoughtPageProps) {
   if (!thought) notFound();
 
   return (
-    <section className="max-w-4xl mx-auto px-6 py-8">
+    <section className="max-w-2xl mx-auto px-6 py-8">
       <header className="mb-8">
-        <h1 className="text-3xl font-bold mb-2 tracking-tight">
+        <h1 className="mb-1 text-title text-heading">
           {thought.title}
         </h1>
-        <div className="flex justify-between items-center mt-2 mb-4">
-          <time className="text-sm text-gray-600">
+        <div className="flex justify-between items-center">
+          <time className="text-caption uppercase text-muted-foreground">
             {new Date(thought.date).toLocaleDateString("en-US", {
               year: "numeric",
               month: "long",

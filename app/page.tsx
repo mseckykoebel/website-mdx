@@ -2,10 +2,8 @@ import type { ComponentPropsWithoutRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { getAllPosts } from "~/lib/posts";
-import { getAllThoughts } from "~/lib/thoughts";
 
 import { Button } from "~/components/ui/button";
-import { Badge } from "~/components/ui/badge";
 import {
   Accordion,
   AccordionContent,
@@ -13,30 +11,32 @@ import {
   AccordionTrigger,
 } from "~/components/ui/accordion";
 import { Header } from "~/app/components/Header";
+import { SectionHeading } from "~/app/components/SectionHeading";
+import { EntryList } from "~/app/components/EntryList";
 
 function Description({ ...props }: ComponentPropsWithoutRef<"div">) {
   return (
-    <div className="max-w-4xl mx-auto px-6" {...props}>
-      <p className="text-lg leading-relaxed text-gray-600">
+    <div className="max-w-2xl mx-auto px-6" {...props}>
+      <p className="text-body text-foreground">
         I am the CTO of{" "}
         <Link
           href="https://www.wizardperks.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="underline hover:text-gray-900 transition-colors"
+          className="link-underline"
         >
           Wizard Perks
         </Link>
         , where we help employees and gig workers access non-public discounts.
       </p>
 
-      {/*<p className="text-lg leading-relaxed text-gray-600 mt-6">
+      {/*<p className="text-body text-foreground mt-6">
         Previously, I was the founder of{" "}
         <Link
           href="https://www.linkedin.com/company/pathize"
           target="_blank"
           rel="noopener noreferrer"
-          className="underline hover:text-gray-900 transition-colors"
+          className="link-underline"
         >
           Pathize Health
         </Link>
@@ -46,14 +46,14 @@ function Description({ ...props }: ComponentPropsWithoutRef<"div">) {
           href="https://drivecapital.com/seed-program"
           target="_blank"
           rel="noopener noreferrer"
-          className="underline hover:text-gray-900 transition-colors"
+          className="link-underline"
         >
           seed investment
         </Link>{" "}
         in Chicago.
       </p>*/}
 
-      <p className="text-lg leading-relaxed text-gray-600 mt-6">
+      <p className="text-body text-foreground mt-6">
         I write infrequently about life and startups.
       </p>
     </div>
@@ -64,65 +64,17 @@ function PostsSection({ ...props }: ComponentPropsWithoutRef<"div">) {
   const posts = getAllPosts().slice(0, 5);
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-8" {...props}>
-      <h2 className="text-xl font-bold text-gray-900 mb-6">Writing</h2>
-      <div className="space-y-6">
-        {posts.map((post, index) => (
-          <article key={post.slug}>
-            <Link href={`/posts/${post.slug}`} className="group block">
-              <div className="flex items-center gap-2">
-                <h3 className="text-lg font-medium text-gray-600 group-hover:text-gray-900 transition-colors underline">
-                  {post.title}
-                </h3>
-                {index === 0 && <Badge variant="outline">Latest</Badge>}
-              </div>
-              <time className="text-sm text-gray-500">
-                {new Date(post.date).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </time>
-            </Link>
-          </article>
-        ))}
-      </div>
-      <Button variant="outline" asChild className="mt-6">
+    <div className="max-w-2xl mx-auto px-6 pt-10" {...props}>
+      <SectionHeading>Writing</SectionHeading>
+      <EntryList
+        entries={posts.map((post) => ({
+          href: `/posts/${post.slug}`,
+          title: post.title,
+          date: post.date,
+        }))}
+      />
+      <Button variant="outline" size="sm" asChild className="mt-5">
         <Link href="/posts">View all</Link>
-      </Button>
-    </div>
-  );
-}
-
-function ThoughtsSection({ ...props }: ComponentPropsWithoutRef<"div">) {
-  const thoughts = getAllThoughts().slice(0, 5);
-
-  return (
-    <div className="max-w-4xl mx-auto px-6 py-8" {...props}>
-      <h2 className="text-xl font-bold text-gray-900 mb-6">Thoughts</h2>
-      <div className="space-y-6">
-        {thoughts.map((thought, index) => (
-          <article key={thought.slug}>
-            <Link href={`/thoughts/${thought.slug}`} className="group block">
-              <div className="flex items-center gap-2">
-                <h3 className="text-lg font-medium text-gray-600 group-hover:text-gray-900 transition-colors underline">
-                  {thought.title}
-                </h3>
-                {index === 0 && <Badge variant="outline">Latest</Badge>}
-              </div>
-              <time className="text-sm text-gray-500">
-                {new Date(thought.date).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </time>
-            </Link>
-          </article>
-        ))}
-      </div>
-      <Button variant="outline" asChild className="mt-6">
-        <Link href="/thoughts">View all</Link>
       </Button>
     </div>
   );
@@ -130,15 +82,15 @@ function ThoughtsSection({ ...props }: ComponentPropsWithoutRef<"div">) {
 
 function PublicationsSection({ ...props }: ComponentPropsWithoutRef<"div">) {
   return (
-    <div className="max-w-4xl mx-auto px-6 py-8" {...props}>
-      <h2 className="text-xl font-bold mb-6 text-gray-900">Publications</h2>
-      <ul className="space-y-4">
+    <div className="max-w-2xl mx-auto px-6 pt-10" {...props}>
+      <SectionHeading>Publications</SectionHeading>
+      <ul className="space-y-2">
         <li>
           <Link
             href="https://www.psychologytoday.com/us/blog/shouldstorm/202404/the-many-reasons-for-hope-in-long-covid"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-lg text-gray-600 hover:text-gray-900 transition-colors underline"
+            className="link-underline text-sm font-medium text-heading"
           >
             The Many Reasons for Hope in Long Covid
           </Link>
@@ -148,7 +100,7 @@ function PublicationsSection({ ...props }: ComponentPropsWithoutRef<"div">) {
             href="https://www.forbes.com/sites/gusalexiou/2023/10/18/pathize-app-uses-biometrics-to-help-long-covid-patients-manage-their-fatigue/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-lg text-gray-600 hover:text-gray-900 transition-colors underline"
+            className="link-underline text-sm font-medium text-heading"
           >
             Pathize App Uses Biometrics To Help Long Covid Patients Manage Their
             Fatigue
@@ -159,7 +111,7 @@ function PublicationsSection({ ...props }: ComponentPropsWithoutRef<"div">) {
             href="https://www.bizjournals.com/chicago/inno/stories/fundings/2023/01/24/health-tech-startup-jupiterdx-preseed.html"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-lg text-gray-600 hover:text-gray-900 transition-colors underline"
+            className="link-underline text-sm font-medium text-heading"
           >
             Health tech startup JupiterDX to launch platform for long Covid care
           </Link>
@@ -169,7 +121,7 @@ function PublicationsSection({ ...props }: ComponentPropsWithoutRef<"div">) {
             href="https://www.axios.com/pro/health-tech-deals/2022/06/16/flexpa-raises-9m-seed-health-data-sharing"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-lg text-gray-600 hover:text-gray-900 transition-colors underline"
+            className="link-underline text-sm font-medium text-heading"
           >
             Flexpa raises $8.5M to build new infrastructure for patient access
             APIs
@@ -182,13 +134,13 @@ function PublicationsSection({ ...props }: ComponentPropsWithoutRef<"div">) {
 
 function WorkSection({ ...props }: ComponentPropsWithoutRef<"div">) {
   return (
-    <div className="max-w-4xl mx-auto px-6 mt-6" {...props}>
-      <h2 className="text-xl font-bold mb-6 text-gray-900">Work</h2>
+    <div className="max-w-2xl mx-auto px-6 pt-10" {...props}>
+      <SectionHeading>Work</SectionHeading>
 
-      <Accordion type="single" collapsible className="w-full space-y-4">
+      <Accordion type="single" collapsible className="w-full space-y-2">
         <AccordionItem
           value="wizard-perks"
-          className="border rounded-lg px-4 last:border-b"
+          className="rounded-lg border px-4 last:border-b"
         >
           <AccordionTrigger className="hover:no-underline">
             <div className="flex items-center justify-between w-full">
@@ -205,10 +157,10 @@ function WorkSection({ ...props }: ComponentPropsWithoutRef<"div">) {
                   />
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900">
+                  <div className="text-sm font-medium text-heading">
                     Wizard Perks - CTO
                   </div>
-                  <div className="text-sm text-gray-500">
+                  <div className="text-xs font-normal text-muted-foreground">
                     January 2025 - Present
                   </div>
                 </div>
@@ -216,12 +168,12 @@ function WorkSection({ ...props }: ComponentPropsWithoutRef<"div">) {
             </div>
           </AccordionTrigger>
           <AccordionContent>
-            <div className="pt-4 pb-2 space-y-4">
-              <p className="text-gray-600">
+            <div className="pt-1 pb-2 space-y-3">
+              <p className="text-body text-foreground">
                 I&apos;ve been the CTO of Wizard Perks since January 2025.
               </p>
 
-              <p className="text-gray-600">
+              <p className="text-body text-foreground">
                 We help employees and gig workers access non-public discounts,
                 specifically through their employer. We&apos;re profitable and
                 growing, and are live with great partners like{" "}
@@ -229,7 +181,7 @@ function WorkSection({ ...props }: ComponentPropsWithoutRef<"div">) {
                   href="https://www.payactiv.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline hover:text-gray-900 transition-colors"
+                  className="link-underline"
                 >
                   Payactiv
                 </Link>{" "}
@@ -238,7 +190,7 @@ function WorkSection({ ...props }: ComponentPropsWithoutRef<"div">) {
                   href="https://unifiservice.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline hover:text-gray-900 transition-colors"
+                  className="link-underline"
                 >
                   UNIFI
                 </Link>
@@ -247,7 +199,7 @@ function WorkSection({ ...props }: ComponentPropsWithoutRef<"div">) {
                   href=""
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline hover:text-gray-900 transition-colors"
+                  className="link-underline"
                 >
                   Village Global
                 </Link>
@@ -259,7 +211,7 @@ function WorkSection({ ...props }: ComponentPropsWithoutRef<"div">) {
 
         <AccordionItem
           value="big-leap"
-          className="border rounded-lg px-4 last:border-b"
+          className="rounded-lg border px-4 last:border-b"
         >
           <AccordionTrigger className="hover:no-underline">
             <div className="flex items-center justify-between w-full">
@@ -276,10 +228,10 @@ function WorkSection({ ...props }: ComponentPropsWithoutRef<"div">) {
                   />
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900">
+                  <div className="text-sm font-medium text-heading">
                     Big Leap Health - Software Engineer
                   </div>
-                  <div className="text-sm text-gray-500">
+                  <div className="text-xs font-normal text-muted-foreground">
                     September 2024 - December 2024
                   </div>
                 </div>
@@ -287,8 +239,8 @@ function WorkSection({ ...props }: ComponentPropsWithoutRef<"div">) {
             </div>
           </AccordionTrigger>
           <AccordionContent>
-            <div className="pt-4 pb-2 space-y-4">
-              <p className="text-gray-600">
+            <div className="pt-1 pb-2 space-y-3">
+              <p className="text-body text-foreground">
                 I&apos;m passionate about mental health and briefly worked at
                 Big Leap Health as a software engineer. I believe in psychedelic
                 therapy in general and its potential to help get people unstuck.
@@ -299,7 +251,7 @@ function WorkSection({ ...props }: ComponentPropsWithoutRef<"div">) {
 
         <AccordionItem
           value="pathize-health"
-          className="border rounded-lg px-4 last:border-b"
+          className="rounded-lg border px-4 last:border-b"
         >
           <AccordionTrigger className="hover:no-underline">
             <div className="flex items-center justify-between w-full">
@@ -316,10 +268,10 @@ function WorkSection({ ...props }: ComponentPropsWithoutRef<"div">) {
                   />
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900">
+                  <div className="text-sm font-medium text-heading">
                     Pathize Health - Co-founder, CTO
                   </div>
-                  <div className="text-sm text-gray-500">
+                  <div className="text-xs font-normal text-muted-foreground">
                     November 2022 - April 2024
                   </div>
                 </div>
@@ -327,21 +279,21 @@ function WorkSection({ ...props }: ComponentPropsWithoutRef<"div">) {
             </div>
           </AccordionTrigger>
           <AccordionContent>
-            <div className="pt-4 pb-2 space-y-4">
-              <p className="text-gray-600">
+            <div className="pt-1 pb-2 space-y-3">
+              <p className="text-body text-foreground">
                 Pathize&apos;s bet was simple: Long COVID was one of the largest
                 public health risks in the country. Nobody was paying attention
                 to it.
               </p>
 
-              <p className="text-gray-600">
+              <p className="text-body text-foreground">
                 We built the first real-time activity tracker for
                 energy-limiting conditions. It could track energy expenditure of
                 everyday activities (washing dishes, walking the dog, etc.)
                 instead of workouts.
               </p>
 
-              <p className="text-gray-600">
+              <p className="text-body text-foreground">
                 Before I left, we were working on a move into telehealth. The
                 company was at $3K MRR, and had hundreds of happy paying users.
                 I was the first time I was paid for software I had built.
@@ -352,7 +304,7 @@ function WorkSection({ ...props }: ComponentPropsWithoutRef<"div">) {
 
         <AccordionItem
           value="flexpa-dev"
-          className="border rounded-lg px-4 last:border-b"
+          className="rounded-lg border px-4 last:border-b"
         >
           <AccordionTrigger className="hover:no-underline">
             <div className="flex items-center justify-between w-full">
@@ -369,10 +321,10 @@ function WorkSection({ ...props }: ComponentPropsWithoutRef<"div">) {
                   />
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900">
+                  <div className="text-sm font-medium text-heading">
                     Flexpa - Software Developer
                   </div>
-                  <div className="text-sm text-gray-500">
+                  <div className="text-xs font-normal text-muted-foreground">
                     June 2022 - November 2022
                   </div>
                 </div>
@@ -380,18 +332,18 @@ function WorkSection({ ...props }: ComponentPropsWithoutRef<"div">) {
             </div>
           </AccordionTrigger>
           <AccordionContent>
-            <div className="pt-4 pb-2 space-y-4">
-              <p className="text-gray-600">
+            <div className="pt-1 pb-2 space-y-3">
+              <p className="text-body text-foreground">
                 I was the third developer hired at Flexpa after graduating from
                 Northwestern.
               </p>
 
-              <p className="text-gray-600">
+              <p className="text-body text-foreground">
                 By the time I joined Flexpa, their product, &quot;Plaid for
                 Healthcare&quot;, was in full swing.
               </p>
 
-              <p className="text-gray-600">
+              <p className="text-body text-foreground">
                 With the time I spent there, I made core contributions to the
                 OAuth widget, as well as worked on a theming system.
               </p>
@@ -401,7 +353,7 @@ function WorkSection({ ...props }: ComponentPropsWithoutRef<"div">) {
 
         <AccordionItem
           value="flexpa-intern"
-          className="border rounded-lg px-4 last:border-b"
+          className="rounded-lg border px-4 last:border-b"
         >
           <AccordionTrigger className="hover:no-underline">
             <div className="flex items-center justify-between w-full">
@@ -418,10 +370,10 @@ function WorkSection({ ...props }: ComponentPropsWithoutRef<"div">) {
                   />
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900">
+                  <div className="text-sm font-medium text-heading">
                     Flexpa - Software Developer (Intern)
                   </div>
-                  <div className="text-sm text-gray-500">
+                  <div className="text-xs font-normal text-muted-foreground">
                     June 2021 - December 2021
                   </div>
                 </div>
@@ -429,9 +381,9 @@ function WorkSection({ ...props }: ComponentPropsWithoutRef<"div">) {
             </div>
           </AccordionTrigger>
           <AccordionContent>
-            <div className="pt-4 pb-2">
-              <div className="space-y-4">
-                <p className="text-gray-600">
+            <div className="pt-1 pb-2">
+              <div className="space-y-3">
+                <p className="text-body text-foreground">
                   My first internship was at Flexpa, where I learned how to
                   write quality code for the first time.
                 </p>
@@ -442,7 +394,7 @@ function WorkSection({ ...props }: ComponentPropsWithoutRef<"div">) {
 
         <AccordionItem
           value="brinc"
-          className="border rounded-lg px-4 last:border-b"
+          className="rounded-lg border px-4 last:border-b"
         >
           <AccordionTrigger className="hover:no-underline">
             <div className="flex items-center justify-between w-full">
@@ -459,10 +411,10 @@ function WorkSection({ ...props }: ComponentPropsWithoutRef<"div">) {
                   />
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900">
+                  <div className="text-sm font-medium text-heading">
                     Brinc - Web Developer
                   </div>
-                  <div className="text-sm text-gray-500">
+                  <div className="text-xs font-normal text-muted-foreground">
                     January 2020 - January 2021
                   </div>
                 </div>
@@ -470,15 +422,15 @@ function WorkSection({ ...props }: ComponentPropsWithoutRef<"div">) {
             </div>
           </AccordionTrigger>
           <AccordionContent>
-            <div className="pt-4 pb-2">
-              <div className="space-y-4">
-                <p className="text-gray-600">
+            <div className="pt-1 pb-2">
+              <div className="space-y-3">
+                <p className="text-body text-foreground">
                   My first programming/web dev job was at BRINC Drones, back
                   when Blake was the only employee. At the time, he was working
                   out of his parents house.
                 </p>
 
-                <p className="text-gray-600">
+                <p className="text-body text-foreground">
                   BRINC recently raised a $125M Series B.
                 </p>
               </div>
@@ -488,7 +440,7 @@ function WorkSection({ ...props }: ComponentPropsWithoutRef<"div">) {
 
         <AccordionItem
           value="hurds-farm"
-          className="border rounded-lg px-4 last:border-b"
+          className="rounded-lg border px-4 last:border-b"
         >
           <AccordionTrigger className="hover:no-underline">
             <div className="flex items-center justify-between w-full">
@@ -505,10 +457,10 @@ function WorkSection({ ...props }: ComponentPropsWithoutRef<"div">) {
                   />
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900">
+                  <div className="text-sm font-medium text-heading">
                     Hurds Family Farm
                   </div>
-                  <div className="text-sm text-gray-500">
+                  <div className="text-xs font-normal text-muted-foreground">
                     August 2015 - October 2015
                   </div>
                 </div>
@@ -516,9 +468,9 @@ function WorkSection({ ...props }: ComponentPropsWithoutRef<"div">) {
             </div>
           </AccordionTrigger>
           <AccordionContent>
-            <div className="pt-4 pb-2">
-              <div className="space-y-4">
-                <p className="text-gray-600">
+            <div className="pt-1 pb-2">
+              <div className="space-y-3">
+                <p className="text-body text-foreground">
                   Technically my first job. I parked cars for about eight hours
                   a day, several days a week.
                 </p>
@@ -537,11 +489,9 @@ export default function Home() {
       <Header />
       <Description />
 
-      {/* NOTE: bringing these back at a later time */}
-      {/*<ThoughtsSection />
       <PostsSection role="main" />
-      <WorkSection />
-      <PublicationsSection />*/}
+      {/* <WorkSection /> */}
+      <PublicationsSection />
     </div>
   );
 }

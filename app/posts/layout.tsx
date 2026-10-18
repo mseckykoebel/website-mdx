@@ -8,8 +8,8 @@ export default function PostsLayout({ children }: PropsWithChildren) {
     <div>
       {children}
 
-      <div className="max-w-4xl mx-auto px-6 pb-8">
-        <Button variant="ghost" asChild>
+      <div className="max-w-2xl mx-auto px-6 pb-8">
+        <Button variant="ghost" size="sm" asChild className="text-muted-foreground hover:text-foreground">
           <Link href="/" className="inline-flex items-center gap-2">
             <span>←</span>
             <span>🏠 Return home</span>

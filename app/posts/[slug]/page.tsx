@@ -53,7 +53,7 @@ export default async function PostPage({ params }: PostPageProps) {
   if (!post) notFound();
 
   return (
-    <section className="max-w-4xl mx-auto px-6 py-8">
+    <section className="max-w-2xl mx-auto px-6 py-8">
       {/* structured data for SEO */}
       <script
         type="application/ld+json"
@@ -76,9 +76,9 @@ export default async function PostPage({ params }: PostPageProps) {
       />
 
       <header className="mb-8">
-        <h1 className="text-2xl font-bold mb-2 tracking-tight">{post.title}</h1>
-        <div className="flex justify-between items-center mt-2 mb-4">
-          <time className="text-md text-gray-600">
+        <h1 className="mb-1 text-title text-heading">{post.title}</h1>
+        <div className="flex justify-between items-center">
+          <time className="text-caption uppercase text-muted-foreground">
             {new Date(post.date).toLocaleDateString("en-US", {
               year: "numeric",
               month: "long",

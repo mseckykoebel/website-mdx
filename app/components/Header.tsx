@@ -10,29 +10,29 @@ export function Header({ ...props }: ComponentPropsWithoutRef<"header">) {
   const name = "Mason Secky-Koebel";
   return (
     <header
-      className="flex justify-between items-start max-w-4xl mx-auto p-6 gap-6"
+      className="flex justify-between items-center max-w-2xl mx-auto p-6 gap-6"
       {...props}
     >
       {/* name (left) */}
       <div className="flex items-center gap-4">
         <Link
           href="/"
-          className="text-xl sm:text-2xl font-bold text-gray-900 hover:text-gray-700 transition-colors"
+          className="text-base font-medium tracking-snug text-heading transition-colors hover:text-foreground"
         >
           {name}
         </Link>
       </div>
 
       {/* contact (right) */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1">
         <Link href="mailto:mseckykebel@mail.com" aria-label="Email contact">
           <Button
             variant="ghost"
-            size="icon"
+            size="icon-sm"
             aria-label="Send email"
-            className="hover:cursor-pointer"
+            className="text-muted-foreground hover:cursor-pointer hover:text-foreground"
           >
-            <Mail className="h-5 w-5" />
+            <Mail className="size-4" />
           </Button>
         </Link>
         <Link
@@ -42,21 +42,21 @@ export function Header({ ...props }: ComponentPropsWithoutRef<"header">) {
         >
           <Button
             variant="ghost"
-            size="icon"
+            size="icon-sm"
             aria-label="Visit GitHub profile"
-            className="hover:cursor-pointer"
+            className="text-muted-foreground hover:cursor-pointer hover:text-foreground"
           >
-            <Github className="h-5 w-5" />
+            <Github className="size-4" />
           </Button>
         </Link>
         <Link href="/rss" target="_blank" aria-label="RSS feed">
           <Button
             variant="ghost"
-            size="icon"
+            size="icon-sm"
             aria-label="Subscribe to RSS feed"
-            className="hover:cursor-pointer"
+            className="text-muted-foreground hover:cursor-pointer hover:text-foreground"
           >
-            <Rss className="h-5 w-5" />
+            <Rss className="size-4" />
           </Button>
         </Link>
       </div>

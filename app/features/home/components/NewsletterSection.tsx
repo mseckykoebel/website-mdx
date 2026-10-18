@@ -58,17 +58,17 @@ export function NewsletterSection() {
   const isButtonDisabled = loading || !form.formState.isValid;
 
   return (
-    <div className="max-w-4xl mx-auto px-6">
+    <div className="max-w-2xl mx-auto px-6">
       <Suspense fallback={null}>
         <VerificationChecker />
       </Suspense>
-      <p className="text-lg leading-relaxed text-gray-600 mt-6">
+      <p className="mt-6 text-body text-foreground">
         I write longer-form posts (infrequently) about technology and startups.
         You can be notified of new posts by subscribing below. Alternatively,
         you can find more frequent thoughts{" "}
         <Link
           href="/thoughts"
-          className="text-gray-600 hover:text-gray-900 transition-colors underline"
+          className="link-underline"
         >
           here
         </Link>
